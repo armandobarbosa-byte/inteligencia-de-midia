@@ -150,13 +150,11 @@
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .toast.fadeOut { opacity: 0; transition: opacity 0.5s ease; }
 
-        /* Abas do modal de senha */
         .modal-tabs { display: flex; gap: 0; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0; }
         .modal-tab { flex: 1; padding: 10px; background: none; border: none; font-family: 'Google Sans', 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600; color: #94a3b8; cursor: pointer; transition: 0.2s; border-bottom: 2px solid transparent; margin-bottom: -2px; }
         .modal-tab.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
-        /* ===== MÓDULO EXTRA FRANQUIADOS ===== */
         .ef-cp-item{display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid #f1f5f9;cursor:pointer;transition:0.15s;gap:10px;}
         .ef-cp-item:last-child{border-bottom:none;}
         .ef-cp-item:hover{background:#fffbea;}
@@ -245,9 +243,7 @@
             </form>
         </div>
 
-        <div style="position: absolute; bottom: 25px; width: 100%; text-align: center; font-size: 0.7rem; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; z-index: 0;">
-            Sistema desenvolvido pela <strong style="color: rgba(255, 255, 255, 0.6);">IDEIA3 Comunicação</strong> exclusivamente para o <strong style="color: rgba(255, 255, 255, 0.6);">Grupo Boticário</strong>
-        </div>
+        <!-- TEXTO DE RODAPÉ REMOVIDO CONFORME SOLICITADO -->
     </div>
 
     <div id="modal-senha" class="modal-overlay hidden">
@@ -519,438 +515,7 @@
             </div>
         </div>
     </div>
-
-    <!-- ============================================================
-         MÓDULO: PLANEJAMENTO EXTRA FRANQUIADOS
-    ============================================================ -->
-    <div id="planejamento-ef-screen" class="hidden" style="height:100vh;overflow-y:auto;background:#f4f7f9;">
-
-        <!-- HEADER COM ABAS -->
-        <div style="background:white;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
-            <div style="padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;">
-                <div style="display:flex;align-items:center;gap:12px;">
-                    <button onclick="voltarParaHomeDeEF()" style="background:none;border:none;cursor:pointer;color:#64748b;font-size:0.82rem;display:flex;align-items:center;gap:5px;font-family:'Google Sans','Outfit',sans-serif;padding:7px 10px;border-radius:8px;transition:0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">
-                        <i class="fa-solid fa-arrow-left"></i> Projetos
-                    </button>
-                    <div style="width:1px;height:22px;background:#e2e8f0;"></div>
-                    <div style="display:flex;align-items:center;gap:9px;">
-                        <div style="background:linear-gradient(135deg,#f4a504,#e69500);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                            <i class="fa-solid fa-map-location-dot" style="color:#111;font-size:0.8rem;"></i>
-                        </div>
-                        <div>
-                            <div style="font-weight:700;font-size:0.88rem;color:#1e293b;">Simulação IR · Extra Franqueados</div>
-                            <div style="font-size:0.58rem;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Ferramenta de viabilidade · O Boticário</div>
-                        </div>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;">
-                    <span id="ef-status-salvo" style="font-size:0.7rem;color:#10b981;display:none;align-items:center;gap:4px;">
-                        <i class="fa-solid fa-cloud-check"></i> Salvo
-                    </span>
-                    <button onclick="document.getElementById('modal-ef-metodologia').classList.remove('hidden')" style="background:none;border:none;cursor:pointer;color:#64748b;font-size:0.78rem;font-family:'Google Sans','Outfit',sans-serif;padding:6px 10px;border-radius:7px;display:flex;align-items:center;gap:5px;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">
-                        <i class="fa-solid fa-flask" style="color:#f4a504;font-size:0.7rem;"></i> Metodologia
-                    </button>
-                    <button onclick="efNovaSimulacao()" style="background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:7px;padding:6px 13px;font-size:0.75rem;font-weight:600;color:#475569;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:5px;transition:0.2s;" onmouseover="this.style.borderColor='#cbd5e1'" onmouseout="this.style.borderColor='#e2e8f0'">
-                        <i class="fa-solid fa-plus"></i> Nova simulação
-                    </button>
-                    <div style="width:1px;height:22px;background:#e2e8f0;"></div>
-                    <div class="user-greeting"><span style="font-size:0.82rem;font-weight:600;color:#1e293b;"><span class="user-name-span"></span></span></div>
-                    <button class="icon-btn" onclick="fazerLogout()" title="Sair"><i class="fa-solid fa-power-off"></i></button>
-                </div>
-            </div>
-            <!-- Abas internas -->
-            <div style="display:flex;padding:0 24px;border-top:1px solid #f1f5f9;">
-                <button id="ef-aba-configurar" onclick="efMudarAba('configurar')" style="background:none;border:none;border-bottom:3px solid #f4a504;padding:9px 16px;font-size:0.78rem;font-weight:700;color:#1e293b;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:6px;transition:0.2s;margin-bottom:-1px;">
-                    <i class="fa-solid fa-sliders" style="font-size:0.7rem;"></i> Configurar
-                </button>
-                <button id="ef-aba-salvas" onclick="efMudarAba('salvas')" style="background:none;border:none;border-bottom:3px solid transparent;padding:9px 16px;font-size:0.78rem;font-weight:600;color:#94a3b8;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:6px;transition:0.2s;margin-bottom:-1px;">
-                    <i class="fa-solid fa-folder-open" style="font-size:0.7rem;"></i> Simulações salvas
-                    <span id="ef-aba-count" style="background:#f1f5f9;border-radius:20px;padding:1px 7px;font-size:0.65rem;font-weight:700;color:#94a3b8;"></span>
-                </button>
-            </div>
-        </div>
-
-        <div id="ef-painel-configurar" style="max-width:1140px;margin:0 auto;padding:28px 20px 50px;">
-
-            <!-- PAINEL DE CONFIGURAÇÃO -->
-            <div style="background:white;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.05);margin-bottom:24px;border:1px solid #e2e8f0;">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #f1f5f9;">
-                    <div style="background:#fffbea;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                        <i class="fa-solid fa-sliders" style="color:#f4a504;font-size:0.85rem;"></i>
-                    </div>
-                    <h2 style="margin:0;font-size:1rem;color:#1e293b;font-weight:700;">Configurar Simulação</h2>
-                </div>
-
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:18px;">
-                    <div class="input-group" style="margin-bottom:0;">
-                        <label><i class="fa-solid fa-rotate" style="margin-right:5px;color:#94a3b8;"></i>Ciclo
-                            <div class="help-tooltip"><i class="fa-solid fa-circle-question"></i><span class="tooltiptext">Ciclo de veiculação (ex: 202605). Usado para compor o nome automático da simulação.</span></div>
-                        </label>
-                        <input type="text" id="ef_ciclo" placeholder="Ex: 202605" maxlength="10" oninput="efGerarNome()" style="font-family:'Google Sans','Outfit',sans-serif;">
-                    </div>
-                    <div class="input-group" style="margin-bottom:0;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;">
-                        <i class="fa-solid fa-wallet" style="color:#10b981;font-size:0.9rem;"></i>
-                        <div>
-                            <div style="font-size:0.68rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;">Verba total do plano</div>
-                            <div id="ef-verba-total-display" style="font-size:1rem;font-weight:800;color:#1e293b;">R$ 0</div>
-                        </div>
-                        <span style="font-size:0.65rem;color:#94a3b8;margin-left:auto;">soma das verbas por veículo</span>
-                    </div>
-                    <div class="input-group" style="margin-bottom:0;">
-                        <label>
-                            <i class="fa-solid fa-mobile-screen" style="margin-right:5px;color:#94a3b8;"></i>Penetração Digital (%)
-                            <div class="help-tooltip"><i class="fa-solid fa-circle-question"></i><span class="tooltiptext">% da população estimada como usuária ativa de internet. Padrão IBGE: 84% Brasil urbano. Ajuste conforme perfil da região.</span></div>
-                        </label>
-                        <input type="number" id="ef_fator_digital" value="84" min="10" max="100" step="1" style="font-family:'Google Sans','Outfit',sans-serif;">
-                    </div>
-                </div>
-
-                <!-- PERÍODO HISTÓRICO + VEÍCULOS -->
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
-                    <!-- Slider período -->
-                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;">
-                        <label style="font-size:0.78rem;font-weight:700;color:#475569;display:flex;align-items:center;gap:6px;margin-bottom:10px;">
-                            <i class="fa-solid fa-clock-rotate-left" style="color:#f4a504;"></i> Janela de histórico
-                            <div class="help-tooltip"><i class="fa-solid fa-circle-question"></i><span class="tooltiptext">Quantos ciclos anteriores usar para calcular CPCadastro e CPM. "Todos" usa todo o histórico disponível.</span></div>
-                        </label>
-                        <div style="display:flex;gap:0;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:white;">
-                            <button class="ef-period-btn ef-period-ativo" data-period="3" onclick="efSetPeriod(3,this)">Últ. 3</button>
-                            <button class="ef-period-btn" data-period="6" onclick="efSetPeriod(6,this)">Últ. 6</button>
-                            <button class="ef-period-btn" data-period="12" onclick="efSetPeriod(12,this)">Últ. 12</button>
-                            <button class="ef-period-btn" data-period="0" onclick="efSetPeriod(0,this)">Todos</button>
-                        </div>
-                        <div id="ef-period-info" style="font-size:0.7rem;color:#94a3b8;margin-top:7px;">Usando os 3 ciclos mais recentes do histórico</div>
-                    </div>
-                    <!-- Seletor de veículos -->
-                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;">
-                        <label style="font-size:0.78rem;font-weight:700;color:#475569;display:flex;align-items:center;gap:6px;margin-bottom:10px;">
-                            <i class="fa-solid fa-tv" style="color:#f4a504;"></i> Veículos para CPM
-                            <div class="help-tooltip"><i class="fa-solid fa-circle-question"></i><span class="tooltiptext">Selecione os veículos que serão usados na simulação. O CPM médio dos veículos selecionados estima as impressões e a frequência de saturação.</span></div>
-                        </label>
-                        <div id="ef-veiculos-wrap" style="display:flex;gap:5px;flex-wrap:wrap;">
-                            <span style="font-size:0.75rem;color:#94a3b8;font-style:italic;">Carregando veículos...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nome gerado automaticamente -->
-                <div id="ef-nome-preview" class="hidden" style="background:#fffbea;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;margin-bottom:18px;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#78350f;">
-                    <i class="fa-solid fa-tag" style="flex-shrink:0;color:#f4a504;"></i>
-                    <span>Nome gerado: </span><strong id="ef-nome-gerado" style="color:#1e293b;"></strong>
-                </div>
-
-                <!-- PAINEL DE ADIÇÃO DE CP — LAYOUT SIDE-BY-SIDE -->
-                <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;margin-bottom:20px;overflow:hidden;">
-                    <!-- Título do painel -->
-                    <div style="padding:14px 18px 12px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;">
-                        <div style="display:flex;align-items:center;gap:7px;">
-                            <i class="fa-solid fa-location-dot" style="color:#f4a504;font-size:0.85rem;"></i>
-                            <span style="font-weight:700;font-size:0.85rem;color:#1e293b;">Adicionar CP à simulação</span>
-                        </div>
-                        <div id="ef-filtros" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
-                    </div>
-                    <!-- Corpo side-by-side -->
-                    <div style="display:grid;grid-template-columns:1fr 1fr;min-height:360px;">
-
-                        <!-- COLUNA ESQUERDA: busca + lista de CPs -->
-                        <div style="border-right:1px solid #f1f5f9;display:flex;flex-direction:column;">
-                            <div style="padding:12px 14px;border-bottom:1px solid #f1f5f9;">
-                                <div style="position:relative;">
-                                    <input type="text" id="ef_busca" placeholder="Buscar CP por código ou nome..." oninput="efFiltrar()" autocomplete="off"
-                                        style="width:100%;padding:9px 10px 9px 32px;border:1.5px solid #e2e8f0;border-radius:8px;box-sizing:border-box;outline:none;font-family:'Google Sans','Outfit',sans-serif;font-size:0.82rem;transition:0.2s;background:white;"
-                                        onfocus="this.style.borderColor='#f4a504'" onblur="this.style.borderColor='#e2e8f0'">
-                                    <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:10px;top:11px;color:#94a3b8;font-size:0.75rem;"></i>
-                                </div>
-                            </div>
-                            <div id="ef-lista-cps" style="flex:1;overflow-y:auto;max-height:310px;background:white;">
-                                <div style="padding:20px;text-align:center;color:#94a3b8;font-size:0.85rem;"><i class="fa-solid fa-spinner fa-spin"></i> Carregando CPs...</div>
-                            </div>
-                        </div>
-
-                        <!-- COLUNA DIREITA: configuração de veículos -->
-                        <div style="display:flex;flex-direction:column;">
-                            <!-- Estado vazio -->
-                            <div id="ef-add-empty" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;gap:10px;color:#94a3b8;">
-                                <i class="fa-solid fa-hand-pointer" style="font-size:2rem;opacity:0.4;"></i>
-                                <span style="font-size:0.8rem;text-align:center;">Selecione um CP ao lado<br>para configurar a simulação</span>
-                            </div>
-                            <!-- Painel de veículos (aparece ao selecionar CP) -->
-                            <div id="ef-add-veiculo-wrap" class="hidden" style="display:flex;flex-direction:column;height:100%;">
-                                <!-- Header do CP selecionado -->
-                                <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;background:white;">
-                                    <div style="display:flex;align-items:center;justify-content:space-between;">
-                                        <div>
-                                            <div style="font-weight:700;font-size:0.88rem;color:#1e293b;" id="ef-add-cp-nome"></div>
-                                            <div id="ef-add-cp-sub" style="font-size:0.68rem;color:#94a3b8;margin-top:1px;"></div>
-                                        </div>
-                                        <button onclick="efAbrirModalCidadesEdicao()" style="background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:7px;padding:5px 11px;font-size:0.7rem;font-weight:600;color:#475569;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;" onmouseover="this.style.borderColor='#f4a504'" onmouseout="this.style.borderColor='#e2e8f0'">
-                                            <i class="fa-solid fa-city" style="font-size:0.62rem;"></i>
-                                            <span id="ef-add-cidades-count">Cidades</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- Lista de veículos (scroll) -->
-                                <div id="ef-add-veiculos-lista" style="flex:1;overflow-y:auto;padding:10px 14px;display:flex;flex-direction:column;gap:6px;max-height:220px;"></div>
-                                <!-- Footer com total + ações -->
-                                <div style="padding:10px 16px;border-top:1px solid #f1f5f9;background:white;display:flex;align-items:center;justify-content:space-between;">
-                                    <div style="font-size:0.78rem;color:#64748b;">
-                                        Total: <strong id="ef-add-total-verba" style="color:#1e293b;font-size:0.88rem;">R$ 0</strong>
-                                    </div>
-                                    <div style="display:flex;gap:7px;">
-                                        <button onclick="efCancelarAddCP()" style="background:white;border:1.5px solid #e2e8f0;border-radius:7px;padding:7px 14px;font-size:0.75rem;font-weight:600;color:#64748b;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;transition:0.2s;" onmouseover="this.style.borderColor='#94a3b8'" onmouseout="this.style.borderColor='#e2e8f0'">
-                                            Cancelar
-                                        </button>
-                                        <button onclick="efConfirmarAddCP()" style="background:#f4a504;border:none;border-radius:7px;padding:7px 16px;font-size:0.75rem;font-weight:700;color:#111;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:5px;transition:0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                                            <i class="fa-solid fa-plus" style="font-size:0.7rem;"></i> Adicionar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- BLOCOS DE CPs NO PLANEJAMENTO -->
-                <div id="ef-blocos-wrap" class="hidden">
-                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                        <i class="fa-solid fa-list-check" style="color:#f4a504;font-size:0.9rem;"></i>
-                        <span style="font-weight:700;font-size:0.82rem;color:#64748b;">CPs na simulação</span>
-                        <span id="ef-count-badge" style="background:#f4a504;color:#111;border-radius:20px;padding:1px 9px;font-size:0.68rem;font-weight:800;">0</span>
-                    </div>
-                    <div id="ef-blocos-lista" style="display:flex;flex-direction:column;gap:12px;"></div>
-                    <div style="display:flex;justify-content:flex-end;margin-top:16px;">
-                        <button onclick="efAnalisar()" id="ef-btn-analisar" style="background:linear-gradient(135deg,#f4a504,#e69500);color:#111;border:none;border-radius:10px;padding:14px 32px;font-weight:700;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;font-size:0.88rem;display:flex;align-items:center;gap:8px;transition:0.3s;letter-spacing:0.5px;box-shadow:0 4px 14px rgba(244,165,4,0.25);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 22px rgba(244,165,4,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(244,165,4,0.25)'">
-                            <i class="fa-solid fa-chart-line"></i> ANALISAR VIABILIDADE
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RESULTADO -->
-            <div id="ef-resultado" class="hidden">
-                <!-- Sumário -->
-                <div style="background:white;border-radius:16px;padding:24px 28px;box-shadow:0 2px 12px rgba(0,0,0,0.05);margin-bottom:20px;border:1px solid #e2e8f0;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-                        <div style="display:flex;align-items:center;gap:8px;">
-                            <i class="fa-solid fa-chart-pie" style="color:#f4a504;font-size:1rem;"></i>
-                            <h3 style="margin:0;font-size:0.98rem;color:#1e293b;font-weight:700;">Resultado da Análise</h3>
-                            <span id="ef-resultado-nome" style="font-size:0.8rem;color:#94a3b8;"></span>
-                        </div>
-                        <div style="display:flex;gap:8px;">
-                            <button onclick="efSalvarSimulacao()" style="background:#10b981;color:white;border:none;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;font-size:0.78rem;display:flex;align-items:center;gap:6px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                                <i class="fa-solid fa-cloud-arrow-up"></i> SALVAR
-                            </button>
-                            <button onclick="efExportar()" style="background:#1e293b;color:white;border:none;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;font-size:0.78rem;display:flex;align-items:center;gap:6px;" onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1e293b'">
-                                <i class="fa-solid fa-file-excel"></i> XLSX
-                            </button>
-                        </div>
-                    </div>
-                    <div id="ef-sumario" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;"></div>
-                </div>
-                <!-- Cards por CP -->
-                <div id="ef-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:18px;"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- MODAL HISTÓRICO EF -->
-    <div id="modal-historico-ef" class="modal-overlay hidden">
-        <div class="modal-content" style="max-width:860px;width:95%;">
-            <button class="modal-close" onclick="fecharModais()"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="margin-top:0;color:#1e293b;font-size:1.1rem;"><i class="fa-solid fa-clock-rotate-left" style="color:#f4a504;margin-right:8px;"></i>Histórico de Simulações EF</h2>
-            <div id="ef-historico-body" style="max-height:520px;overflow-y:auto;"></div>
-        </div>
-    </div>
-
-    <!-- MODAL METODOLOGIA EF -->
-    <div id="modal-ef-metodologia" class="modal-overlay hidden">
-        <div class="modal-content" style="max-width:640px;">
-            <button class="modal-close" onclick="fecharModais()"><i class="fa-solid fa-xmark"></i></button>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-                <div style="background:linear-gradient(135deg,#f4a504,#e69500);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                    <i class="fa-solid fa-flask" style="color:white;font-size:0.9rem;"></i>
-                </div>
-                <div>
-                    <h2 style="margin:0;font-size:1.1rem;color:#1e293b;">Metodologia de Viabilidade</h2>
-                    <p style="margin:0;font-size:0.75rem;color:#94a3b8;">Como o sistema avalia cada CP</p>
-                </div>
-            </div>
-
-            <div style="background:#fffbea;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:0.82rem;color:#78350f;line-height:1.5;">
-                <strong><i class="fa-solid fa-bullseye" style="margin-right:6px;"></i>Objetivo:</strong> Avaliar se uma campanha de IR (Venda Direta do Futuro) é financeiramente viável para um dado CP, cruzando <strong>histórico de resultados reais</strong> com o <strong>tamanho da audiência digital</strong> e a <strong>verba alocada</strong>.
-            </div>
-
-            <!-- Pilar 1 -->
-            <div style="margin-bottom:16px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
-                <div style="background:#f8fafc;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e2e8f0;">
-                    <div style="background:#dbeafe;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-line" style="color:#2563eb;font-size:0.75rem;"></i></div>
-                    <span style="font-weight:700;font-size:0.88rem;color:#1e293b;">Pilar 1 — Performance Histórica</span>
-                </div>
-                <div style="padding:14px 16px;font-size:0.8rem;color:#475569;line-height:1.6;">
-                    Calcula o <strong>CPCadastro real</strong> do CP (Investimento ÷ Cadastros realizados) e compara com a <strong>mediana da base completa</strong> de todos os CPs com histórico.
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-                        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#15803d;font-size:0.8rem;">🟢 Eficiente</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">CPCad ≤ 90% da mediana</div></div>
-                        <div style="background:#fffbea;border:1px solid #fde68a;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#a16207;font-size:0.8rem;">🟡 Na média</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">CPCad entre 90%–140%</div></div>
-                        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#b91c1c;font-size:0.8rem;">🔴 Acima</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">CPCad > 140% da mediana</div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pilar 2 -->
-            <div style="margin-bottom:16px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
-                <div style="background:#f8fafc;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e2e8f0;">
-                    <div style="background:#dcfce7;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-users" style="color:#16a34a;font-size:0.75rem;"></i></div>
-                    <span style="font-weight:700;font-size:0.88rem;color:#1e293b;">Pilar 2 — Saturação de Audiência</span>
-                </div>
-                <div style="padding:14px 16px;font-size:0.8rem;color:#475569;line-height:1.6;">
-                    Mede o <strong>investimento por habitante digital</strong> (Verba ÷ Pop. Digital Estimada). A população digital é obtida via <strong>API do IBGE</strong> para cada município do CP, multiplicada pelo fator de penetração configurável (padrão 84%).
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
-                        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#15803d;font-size:0.8rem;">🟢 Baixa</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">&lt; R$0,50/hab</div></div>
-                        <div style="background:#fffbea;border:1px solid #fde68a;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#a16207;font-size:0.8rem;">🟡 Moderada</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">R$0,50–R$1,20/hab</div></div>
-                        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#b91c1c;font-size:0.8rem;">🔴 Alta</div><div style="font-size:0.7rem;color:#64748b;margin-top:2px;">&gt; R$1,20/hab</div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pilar 3 -->
-            <div style="margin-bottom:20px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
-                <div style="background:#f8fafc;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e2e8f0;">
-                    <div style="background:#fae8ff;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-database" style="color:#9333ea;font-size:0.75rem;"></i></div>
-                    <span style="font-weight:700;font-size:0.88rem;color:#1e293b;">Pilar 3 — Confiabilidade dos Dados</span>
-                </div>
-                <div style="padding:14px 16px;font-size:0.8rem;color:#475569;line-height:1.6;">
-                    Avalia o <strong>volume de cadastros históricos</strong> para saber quão confiável é a estimativa. CPs com poucos cadastros históricos têm alta variância — o CPCadastro pode não ser representativo.
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:10px;">
-                        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#94a3b8;font-size:0.75rem;">⚪ Sem dados</div><div style="font-size:0.68rem;color:#94a3b8;margin-top:2px;">0 cadastros</div></div>
-                        <div style="background:#fffbea;border:1px solid #fde68a;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#a16207;font-size:0.75rem;">🟡 Baixo</div><div style="font-size:0.68rem;color:#64748b;margin-top:2px;">&lt; 10 cadastros</div></div>
-                        <div style="background:#fffbea;border:1px solid #fde68a;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#a16207;font-size:0.75rem;">🟡 Razoável</div><div style="font-size:0.68rem;color:#64748b;margin-top:2px;">10–49</div></div>
-                        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:8px 10px;text-align:center;"><div style="font-weight:800;color:#15803d;font-size:0.75rem;">🟢 Sólido</div><div style="font-size:0.68rem;color:#64748b;margin-top:2px;">≥ 50 cadastros</div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Decisão final -->
-            <div style="background:#f8fafc;border-radius:10px;padding:14px 16px;font-size:0.78rem;color:#475569;line-height:1.6;border:1px solid #e2e8f0;">
-                <strong style="color:#1e293b;"><i class="fa-solid fa-traffic-light" style="margin-right:5px;color:#f4a504;"></i>Decisão final</strong> — O semáforo combina os 3 pilares:<br>
-                <span style="color:#15803d;">🟢 <strong>Viável</strong></span> — Performance boa + saturação baixa/moderada<br>
-                <span style="color:#a16207;">🟡 <strong>Atenção</strong></span> — 1 pilar em risco ou dados insuficientes<br>
-                <span style="color:#b91c1c;">🔴 <strong>Inviável</strong></span> — Performance ruim <em>e</em> saturação alta, ou saturação crítica sem histórico<br>
-                <span style="color:#64748b;">⚪ <strong>Sem dados</strong></span> — Nenhum histórico real disponível para o CP
-            </div>
-        </div>
-    </div>
-
-    <!-- TELA CONSULTA PLANEJAMENTOS EF -->
-    <div id="consulta-ef-screen" class="hidden" style="height:100vh;overflow-y:auto;background:#f4f7f9;">
-        <div style="background:white;border-bottom:1px solid #e2e8f0;padding:0 30px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
-            <div style="display:flex;align-items:center;gap:15px;">
-                <button onclick="fecharConsultaEF()" style="background:none;border:none;cursor:pointer;color:#64748b;font-size:0.85rem;display:flex;align-items:center;gap:6px;font-family:'Google Sans','Outfit',sans-serif;padding:8px 12px;border-radius:8px;transition:0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">
-                    <i class="fa-solid fa-arrow-left"></i> Voltar
-                </button>
-                <div style="width:1px;height:24px;background:#e2e8f0;"></div>
-                <div style="display:flex;align-items:center;gap:10px;">
-                    <div style="background:linear-gradient(135deg,#1e293b,#334155);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;">
-                        <i class="fa-solid fa-folder-open" style="color:#f4a504;font-size:0.9rem;"></i>
-                    </div>
-                    <div>
-                        <div style="font-weight:700;font-size:0.95rem;color:#1e293b;">Simulações Salvas</div>
-                        <div style="font-size:0.62rem;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Extra Franquiados · Histórico Completo</div>
-                    </div>
-                </div>
-            </div>
-            <button onclick="abrirSimulacaoEF()" style="background:linear-gradient(135deg,#f4a504,#e69500);color:#111;border:none;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;font-size:0.78rem;display:flex;align-items:center;gap:6px;transition:0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                <i class="fa-solid fa-plus"></i> NOVO PLANEJAMENTO
-            </button>
-        </div>
-
-        <div style="max-width:1100px;margin:0 auto;padding:28px 20px 50px;">
-            <!-- Filtros -->
-            <div style="background:white;border-radius:14px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,0.05);border:1px solid #e2e8f0;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-                <div style="position:relative;flex:1;min-width:200px;">
-                    <input type="text" id="consulta-ef-busca" placeholder="Buscar simulação..." oninput="efFiltrarConsulta()"
-                        style="width:100%;padding:10px 10px 10px 34px;border:1.5px solid #e2e8f0;border-radius:8px;box-sizing:border-box;outline:none;font-family:'Google Sans','Outfit',sans-serif;font-size:0.85rem;transition:0.3s;"
-                        onfocus="this.style.borderColor='#f4a504'" onblur="this.style.borderColor='#e2e8f0'">
-                    <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:11px;top:12px;color:#94a3b8;font-size:0.78rem;"></i>
-                </div>
-                <div style="display:flex;gap:6px;flex-wrap:wrap;" id="consulta-ef-filtros-via">
-                    <span class="ef-tag ef-ativo" onclick="efFiltroVia(null,this)">Todos</span>
-                    <span class="ef-tag" onclick="efFiltroVia('viavel',this)" style="border-color:#bbf7d0;color:#15803d;">🟢 Viável</span>
-                    <span class="ef-tag" onclick="efFiltroVia('atencao',this)" style="border-color:#fde68a;color:#a16207;">🟡 Atenção</span>
-                    <span class="ef-tag" onclick="efFiltroVia('inviavel',this)" style="border-color:#fecaca;color:#b91c1c;">🔴 Inviável</span>
-                </div>
-                <select id="consulta-ef-order" onchange="efFiltrarConsulta()" style="padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Google Sans','Outfit',sans-serif;font-size:0.82rem;color:#475569;outline:none;cursor:pointer;">
-                    <option value="desc">Mais recentes primeiro</option>
-                    <option value="asc">Mais antigos primeiro</option>
-                </select>
-            </div>
-
-            <!-- Cards -->
-            <div id="consulta-ef-lista" style="display:flex;flex-direction:column;gap:14px;">
-                <div style="text-align:center;color:#94a3b8;padding:50px;font-size:0.9rem;"><i class="fa-solid fa-spinner fa-spin"></i> Carregando simulações...</div>
-            </div>
-        </div>
-
-        <!-- PAINEL: SIMULAÇÕES SALVAS (aba interna) -->
-        <div id="ef-painel-salvas" class="hidden" style="max-width:1140px;margin:0 auto;padding:28px 20px 50px;">
-            <div style="background:white;border-radius:14px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,0.05);border:1px solid #e2e8f0;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-                <div style="position:relative;flex:1;min-width:200px;">
-                    <input type="text" id="ef-salvas-busca" placeholder="Buscar por nome ou CP..." oninput="efFiltrarConsulta()"
-                        style="width:100%;padding:10px 10px 10px 34px;border:1.5px solid #e2e8f0;border-radius:8px;box-sizing:border-box;outline:none;font-family:'Google Sans','Outfit',sans-serif;font-size:0.85rem;transition:0.3s;"
-                        onfocus="this.style.borderColor='#f4a504'" onblur="this.style.borderColor='#e2e8f0'">
-                    <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:11px;top:12px;color:#94a3b8;font-size:0.78rem;"></i>
-                </div>
-                <div style="display:flex;gap:6px;flex-wrap:wrap;" id="ef-salvas-filtros-via">
-                    <span class="ef-tag ef-ativo" onclick="efFiltroVia(null,this)">Todos</span>
-                    <span class="ef-tag" onclick="efFiltroVia('viavel',this)" style="border-color:#bbf7d0;color:#15803d;">🟢 Viável</span>
-                    <span class="ef-tag" onclick="efFiltroVia('atencao',this)" style="border-color:#fde68a;color:#a16207;">🟡 Atenção</span>
-                    <span class="ef-tag" onclick="efFiltroVia('inviavel',this)" style="border-color:#fecaca;color:#b91c1c;">🔴 Inviável</span>
-                </div>
-                <select id="ef-salvas-order" onchange="efFiltrarConsulta()" style="padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Google Sans','Outfit',sans-serif;font-size:0.82rem;color:#475569;outline:none;cursor:pointer;">
-                    <option value="desc">Mais recentes primeiro</option>
-                    <option value="asc">Mais antigos primeiro</option>
-                </select>
-            </div>
-            <div id="ef-salvas-lista" style="display:flex;flex-direction:column;gap:14px;">
-                <div style="text-align:center;color:#94a3b8;padding:50px;font-size:0.9rem;"><i class="fa-solid fa-spinner fa-spin"></i> Carregando simulações...</div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- MODAL SELEÇÃO DE CIDADES DO CP -->
-    <div id="modal-ef-cidades" class="modal-overlay hidden">
-        <div class="modal-content" style="max-width:560px;">
-            <button class="modal-close" onclick="fecharModais()"><i class="fa-solid fa-xmark"></i></button>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-                <div style="background:#fffbea;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                    <i class="fa-solid fa-city" style="color:#f4a504;font-size:0.85rem;"></i>
-                </div>
-                <div>
-                    <h2 style="margin:0;font-size:1rem;color:#1e293b;" id="modal-cidades-titulo">Selecionar Cidades</h2>
-                    <p style="margin:0;font-size:0.72rem;color:#94a3b8;">Marque as cidades que farão parte desta simulação</p>
-                </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <div style="position:relative;flex:1;">
-                    <input type="text" id="modal-cidades-busca" placeholder="Filtrar cidade..." oninput="efFiltrarCidades()"
-                        style="width:100%;padding:9px 9px 9px 32px;border:1.5px solid #e2e8f0;border-radius:8px;box-sizing:border-box;outline:none;font-family:'Google Sans','Outfit',sans-serif;font-size:0.83rem;transition:0.3s;"
-                        onfocus="this.style.borderColor='#f4a504'" onblur="this.style.borderColor='#e2e8f0'">
-                    <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:10px;top:11px;color:#94a3b8;font-size:0.75rem;"></i>
-                </div>
-                <button onclick="efSelecionarTodasCidades(true)" style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:7px;padding:8px 12px;font-size:0.75rem;color:#475569;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;white-space:nowrap;">Todas</button>
-                <button onclick="efSelecionarTodasCidades(false)" style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:7px;padding:8px 12px;font-size:0.75rem;color:#475569;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;white-space:nowrap;">Nenhuma</button>
-            </div>
-            <div id="modal-cidades-lista" style="max-height:340px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:10px;background:#fafafa;"></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-                <span id="modal-cidades-count" style="font-size:0.78rem;color:#94a3b8;"></span>
-                <button onclick="efConfirmarCidades()" style="background:#f4a504;color:#111;border:none;border-radius:8px;padding:11px 24px;font-weight:700;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;font-size:0.82rem;transition:0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                    <i class="fa-solid fa-check"></i> CONFIRMAR SELEÇÃO
-                </button>
-            </div>
-        </div>
-    </div>
+    
 
     <div id="dashboard-screen" class="hidden">
         <div class="sidebar">
@@ -984,14 +549,8 @@
                     <button id="btn-admin-logs" class="icon-btn hidden" onclick="abrirLogs()" title="Auditoria de Logs"><i class="fa-solid fa-clipboard-list"></i></button>
                     <button id="btn-admin-users" class="icon-btn hidden" onclick="abrirGerenciarUsuarios()" title="Gestão de Usuários"><i class="fa-solid fa-users-gear"></i></button>
                     <button id="btn-admin-add" class="icon-btn hidden" onclick="prepararInsercaoRelatorio()" title="Inserir Arquivo ou Pasta"><i class="fa-solid fa-folder-plus"></i></button>
-                    <button id="btn-ef-planejar" class="icon-btn hidden" onclick="abrirSimulacaoEF()" title="Simulação IR — Extra Franqueados" style="position:relative;">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <span style="position:absolute;top:-3px;right:-3px;width:7px;height:7px;background:#f4a504;border-radius:50%;border:1.5px solid white;"></span>
-                    </button>
-
                     <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;" class="div-barra-topo"></div>
                     <button class="icon-btn" onclick="copiarLink()" title="Copiar Link do Arquivo"><i class="fa-solid fa-link"></i></button>
-                    
                     <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;" class="div-barra-topo"></div>
                     <div class="user-greeting"><span>Olá, <span class="user-name-span"></span></span><span class="user-role-badge"><span class="user-org-span"></span> | <span class="user-nivel-span"></span></span></div>
                     <button class="icon-btn" onclick="fazerLogout()" title="Sair do sistema" style="margin-left: 5px;"><i class="fa-solid fa-power-off"></i></button>
@@ -1015,27 +574,20 @@
 
         const SUPABASE_URL = 'https://ydjndessrmnkyaywtkvu.supabase.co'; 
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlkam5kZXNzcm1ua3lheXd0a3Z1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0NDIyOTYsImV4cCI6MjA4ODAxODI5Nn0.n7MQqwGH4bluaVcnEUTCtvQO3m0MfFjCxu5uDarFntc';
-        let efJWT = null; // JWT real do Supabase Auth — substituirá a anon key após login
+        let efJWT = null;
 
-        // Retorna os headers corretos: JWT autenticado quando disponível, anon key antes do login
         function sbHeaders(extra) {
             const token = efJWT || SUPABASE_KEY;
-            return Object.assign({
-                'apikey': SUPABASE_KEY,
-                'Authorization': 'Bearer ' + token
-            }, extra || {});
+            return Object.assign({ 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + token }, extra || {});
         }
-        function sbHeadersJSON() {
-            return sbHeaders({'Content-Type': 'application/json'});
-        }
+        function sbHeadersJSON() { return sbHeaders({'Content-Type': 'application/json'}); }
 
         let relatoriosDoBanco = []; 
         let linkAtual = "";
         let usuarioSessao = {}; 
         let acaoConfirmacaoPendente = null;
-        let tempUserPara2FA = null; // Variável para segurar o usuário durante o 2FA
+        let tempUserPara2FA = null;
 
-        // Novas Funções para Controle das Abas no Modal de Senha
         function trocarAba(abaId, btnEl) {
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
@@ -1048,37 +600,20 @@
         async function solicitarResetSenha(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-recuperar-senha'); 
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ENVIANDO...'; 
-            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ENVIANDO...'; btn.disabled = true;
             const email = document.getElementById('recuperar_email').value.trim();
             try {
                 const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?email=eq.${encodeURIComponent(email)}&select=id,nome,email`, { headers: sbHeaders() });
                 const dados = await res.json();
-                if (dados.length === 0) {
-                    mostrarNotificacao("E-mail não encontrado no sistema.", "error");
-                    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ENVIAR NOVO CÓDIGO'; btn.disabled = false;
-                    return;
-                }
+                if (dados.length === 0) { mostrarNotificacao("E-mail não encontrado.", "error"); btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ENVIAR NOVO CÓDIGO'; btn.disabled = false; return; }
                 const usuario = dados[0];
                 const novoToken = Math.floor(100000 + Math.random() * 900000).toString();
-                
-                // Usar RPC para gravar token (SECURITY DEFINER — ignora RLS)
-                const patchRes = await fetch(SUPABASE_URL + '/rest/v1/rpc/set_2fa_token', {
-                    method: 'POST',
-                    headers: { 
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_KEY,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ p_user_id: usuario.id, p_token: novoToken })
-                });
+                const patchRes = await fetch(SUPABASE_URL + '/rest/v1/rpc/set_2fa_token', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_user_id: usuario.id, p_token: novoToken }) });
                 if (!patchRes.ok) throw new Error("Erro ao atualizar token");
-                
                 try { fetch(CONFIGURACOES_DO_SISTEMA.appEmailUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: usuario.email, nome: usuario.nome, token: novoToken, tipo: 'ativacao' }) }); } catch(err) {}
-                
                 document.getElementById('recuperacao-feedback').style.display = 'block';
                 mostrarNotificacao("Novo código enviado para " + email, "success");
-            } catch (err) { mostrarNotificacao("Erro de comunicação com o servidor.", "error"); }
+            } catch (err) { mostrarNotificacao("Erro de comunicação.", "error"); }
             btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ENVIAR NOVO CÓDIGO'; btn.disabled = false;
         }
 
@@ -1108,7 +643,7 @@
                 if(!res.ok) throw new Error();
                 const dados = await res.json();
                 tbody.innerHTML = '';
-                if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8;">Nenhuma atividade registrada ainda.</td></tr>'; return; }
+                if(dados.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8;">Nenhuma atividade registrada.</td></tr>'; return; }
                 dados.forEach(log => {
                     const data = new Date(log.created_at).toLocaleString('pt-BR');
                     tbody.innerHTML += `<tr><td class="log-date">${data}</td><td style="font-weight:600; color:#334155;">${log.usuario}</td><td><span style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">${log.acao}</span></td><td style="color:#64748b;">${log.detalhes}</td></tr>`;
@@ -1125,65 +660,45 @@
             if(div.classList.contains('hidden')){ document.querySelectorAll('.custom-dropdown-list').forEach(el => el.classList.add('hidden')); div.classList.remove('hidden'); } 
             else { div.classList.add('hidden'); }
         }
-
-        function showCustomOptions(divId) {
-            document.querySelectorAll('.custom-dropdown-list').forEach(el => el.classList.add('hidden'));
-            document.getElementById(divId).classList.remove('hidden');
-        }
-
+        function showCustomOptions(divId) { document.querySelectorAll('.custom-dropdown-list').forEach(el => el.classList.add('hidden')); document.getElementById(divId).classList.remove('hidden'); }
         function filterCustomOptions(input, divId) {
             const filter = input.value.toLowerCase().trim();
-            const div = document.getElementById(divId);
-            if (!div) return;
+            const div = document.getElementById(divId); if (!div) return;
             const items = div.getElementsByClassName('opt-item');
             const emptyMsg = div.querySelector('.opt-empty');
             let hasVisible = false; let exactMatch = false;
             for (let i = 0; i < items.length; i++) {
-                const txtSpan = items[i].querySelector('.opt-text');
-                const txt = txtSpan ? txtSpan.innerText : items[i].innerText;
-                if (txt.toLowerCase().indexOf(filter) > -1) { items[i].style.display = ""; hasVisible = true; if (txt.toLowerCase() === filter) exactMatch = true; } 
-                else { items[i].style.display = "none"; }
+                const txtSpan = items[i].querySelector('.opt-text'); const txt = txtSpan ? txtSpan.innerText : items[i].innerText;
+                if (txt.toLowerCase().indexOf(filter) > -1) { items[i].style.display = ""; hasVisible = true; if (txt.toLowerCase() === filter) exactMatch = true; } else { items[i].style.display = "none"; }
             }
             if (emptyMsg) emptyMsg.style.display = hasVisible ? "none" : "";
             const createBtn = document.getElementById(input.id + '-create-btn');
             if (createBtn) {
-                if (filter.length > 0 && !exactMatch) { document.getElementById(input.id + '-create-text').innerText = `Usar "${input.value}"`; createBtn.classList.remove('hidden'); hasVisible = true; if(emptyMsg) emptyMsg.style.display = "none"; } 
-                else { createBtn.classList.add('hidden'); }
+                if (filter.length > 0 && !exactMatch) { document.getElementById(input.id + '-create-text').innerText = `Usar "${input.value}"`; createBtn.classList.remove('hidden'); hasVisible = true; if(emptyMsg) emptyMsg.style.display = "none"; } else { createBtn.classList.add('hidden'); }
             }
             if(hasVisible || (filter.length > 0)) div.classList.remove('hidden');
         }
-
         function handleInputTyping(inputId) {
             filterCustomOptions(document.getElementById(inputId), inputId + '-div');
             if (inputId === 'ing_ano') { document.getElementById('ing_categoria').value = ''; document.getElementById('ing_ciclo').value = ''; renderList('ing_categoria', []); renderList('ing_ciclo', []); } 
             else if (inputId === 'ing_categoria') { document.getElementById('ing_ciclo').value = ''; renderList('ing_ciclo', []); }
         }
-
         function selectCustomOption(inputId, val) {
-            document.getElementById(inputId).value = val;
-            document.getElementById(inputId + '-div').classList.add('hidden');
+            document.getElementById(inputId).value = val; document.getElementById(inputId + '-div').classList.add('hidden');
             if(inputId === 'ing_ano') { document.getElementById('ing_categoria').value = ''; document.getElementById('ing_ciclo').value = ''; atualizarCascata('ano'); } 
             else if (inputId === 'ing_categoria') { document.getElementById('ing_ciclo').value = ''; atualizarCascata('categoria'); }
         }
-
         function renderList(inputId, options) {
-            const div = document.getElementById(inputId + '-div');
-            let html = "";
+            const div = document.getElementById(inputId + '-div'); let html = "";
             if (options.length > 0) { options.forEach(opt => { html += `<div class="custom-dropdown-item opt-item" onclick="selectCustomOption('${inputId}', '${opt.replace(/'/g, "\\'")}')"><i class="fa-regular fa-folder opt-icon"></i> <span class="opt-text">${opt}</span></div>`; }); } 
             else { html += `<div class="custom-dropdown-item opt-empty" style="color:#94a3b8; cursor:default; font-style:italic;">Nenhuma pasta existente</div>`; }
             html += `<div id="${inputId}-create-btn" class="custom-dropdown-item custom-create-btn hidden" onclick="selectCustomOption('${inputId}', document.getElementById('${inputId}').value)"><i class="fa-solid fa-plus"></i> <span id="${inputId}-create-text">Criar</span></div>`;
-            div.innerHTML = html;
-            filterCustomOptions(document.getElementById(inputId), inputId + '-div'); 
+            div.innerHTML = html; filterCustomOptions(document.getElementById(inputId), inputId + '-div'); 
         }
-
         function atualizarCascata(trigger = 'cliente') {
             try {
-                const cli = document.getElementById('ing_cliente').value;
-                const a = document.getElementById('ing_ano').value;
-                const cat = document.getElementById('ing_categoria').value;
-                const dadosCli = relatoriosDoBanco.filter(r => r.cliente === cli);
-                const dadosAno = dadosCli.filter(r => r.ano === a);
-                const dadosCat = dadosAno.filter(r => r.categoria === cat);
+                const cli = document.getElementById('ing_cliente').value; const a = document.getElementById('ing_ano').value; const cat = document.getElementById('ing_categoria').value;
+                const dadosCli = relatoriosDoBanco.filter(r => r.cliente === cli); const dadosAno = dadosCli.filter(r => r.ano === a); const dadosCat = dadosAno.filter(r => r.categoria === cat);
                 if (trigger === 'cliente' || trigger === 'all') { let anos = [...new Set(dadosCli.map(r=>r.ano).filter(v=>v&&v!=="Geral"))]; anos.sort((x, y) => String(x).localeCompare(String(y), undefined, {numeric: true})); renderList('ing_ano', anos); }
                 if (trigger === 'cliente' || trigger === 'ano' || trigger === 'all') { let cats = [...new Set(dadosAno.map(r=>r.categoria).filter(v=>v&&v!=="Geral"))]; cats.sort((x, y) => String(x).localeCompare(String(y), undefined, {numeric: true})); renderList('ing_categoria', cats); if(trigger !== 'all') { document.getElementById('ing_categoria').value = ''; document.getElementById('ing_ciclo').value = ''; } }
                 if (trigger === 'cliente' || trigger === 'ano' || trigger === 'categoria' || trigger === 'all') { let ciclos = [...new Set(dadosCat.map(r=>r.ciclo).filter(v=>v&&v!=="Geral"))]; ciclos.sort((x, y) => String(x).localeCompare(String(y), undefined, {numeric: true})); renderList('ing_ciclo', ciclos); if(trigger !== 'all' && trigger !== 'cliente' && trigger !== 'ano') { document.getElementById('ing_ciclo').value = ''; } }
@@ -1202,16 +717,11 @@
         function pedirConfirmacao(mensagem, acaoCallback, exigeSenha = false) {
             fecharModais(); document.getElementById('confirm-msg').innerText = mensagem;
             const passContainer = document.getElementById('confirm-pass-container');
-            if(exigeSenha) { passContainer.classList.remove('hidden'); document.getElementById('confirm-admin-pass').value = ''; } 
-            else { passContainer.classList.add('hidden'); }
+            if(exigeSenha) { passContainer.classList.remove('hidden'); document.getElementById('confirm-admin-pass').value = ''; } else { passContainer.classList.add('hidden'); }
             acaoConfirmacaoPendente = async () => {
                 if(exigeSenha) {
                     const senhaAdminConf = document.getElementById('confirm-admin-pass').value;
-                    const reauthConf = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-                        method: 'POST',
-                        headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: usuarioSessao.email, password: senhaAdminConf })
-                    });
+                    const reauthConf = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ email: usuarioSessao.email, password: senhaAdminConf }) });
                     if (!reauthConf.ok) { mostrarNotificacao("Senha incorreta!", "error"); return; }
                 }
                 acaoCallback();
@@ -1220,45 +730,48 @@
         }
         document.getElementById('btn-confirm-action').addEventListener('click', () => { fecharModais(); if(acaoConfirmacaoPendente) acaoConfirmacaoPendente(); });
 
+        // ====================================================================
+        // SESSÃO: inicialização robusta — não derruba sessão por falha de rede
+        // ====================================================================
         window.onload = async () => {
             carregarLogos();
             const salvo = localStorage.getItem('ideia3_sessao');
-            if(salvo) {
-                usuarioSessao = JSON.parse(salvo);
-                // Aguarda renovação do JWT antes de carregar dados
-                const refresh = localStorage.getItem('ideia3_refresh');
-                if (refresh) {
-                    try {
-                        const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
-                            method: 'POST',
-                            headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ refresh_token: refresh })
-                        });
+            if (!salvo) return; // Sem sessão salva → fica no login
+
+            usuarioSessao = JSON.parse(salvo);
+
+            const refresh = localStorage.getItem('ideia3_refresh');
+            if (refresh) {
+                try {
+                    const r = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+                        method: 'POST',
+                        headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ refresh_token: refresh })
+                    });
+                    if (r.ok) {
                         const d = await r.json();
                         if (d.access_token) {
                             efJWT = d.access_token;
                             if (d.refresh_token) localStorage.setItem('ideia3_refresh', d.refresh_token);
-                        } else {
-                            // Refresh inválido — força novo login
-                            localStorage.removeItem('ideia3_sessao');
-                            localStorage.removeItem('ideia3_refresh');
-                            efJWT = null;
-                            usuarioSessao = {};
-                            return;
                         }
-                    } catch(e) { /* sem conexão — tenta continuar mesmo assim */ }
-                } else {
-                    // Sem refresh token salvo — sessão antiga sem JWT, força re-login
-                    localStorage.removeItem('ideia3_sessao');
-                    return;
+                        // Se não veio access_token, continua com anon key — não derruba sessão
+                    }
+                    // Se r não ok (ex: refresh expirado), continua mesmo assim com dados salvos
+                    // Apenas operações que precisam de JWT autenticado vão falhar individualmente
+                } catch(e) {
+                    // Sem conexão ou erro de rede → continua com sessão salva
+                    console.warn('Refresh token falhou, continuando com sessão salva:', e);
                 }
-                // JWT renovado com claims atuais (nivel, org) via hook
-                configurarSessaoUI();
-                carregarRelatoriosSupabase();
             }
+
+            // Carrega UI normalmente independente de ter renovado o JWT ou não
+            configurarSessaoUI();
+            carregarRelatoriosSupabase();
         };
 
-        // ====== FLUXO DE LOGIN COM 2FA ======
+        // ====================================================================
+        // LOGIN COM 2FA
+        // ====================================================================
         async function realizarLogin(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-login');
@@ -1266,69 +779,32 @@
             const emailDigitado = document.getElementById('email').value.trim();
             const senhaDigitada = document.getElementById('password').value.trim();
             try {
-                // 1. Autenticar no Supabase Auth — obtém JWT real
-                const authRes = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-                    method: 'POST',
-                    headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: emailDigitado, password: senhaDigitada })
-                });
+                const authRes = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ email: emailDigitado, password: senhaDigitada }) });
                 const authData = await authRes.json();
-
                 if (!authRes.ok) {
-                    if (authData.error === 'invalid_grant' || authData.error_description?.includes('Invalid login')) {
-                        mostrarNotificacao("E-mail ou senha incorretos.", "error");
-                    } else if (authData.error_description?.includes('not confirmed')) {
-                        mostrarNotificacao("Conta não confirmada. Verifique seu e-mail.", "error");
-                    } else {
-                        mostrarNotificacao(authData.error_description || "Erro ao autenticar.", "error");
-                    }
-                    btn.innerHTML = 'ENTRAR'; btn.disabled = false;
-                    return;
+                    if (authData.error === 'invalid_grant' || authData.error_description?.includes('Invalid login')) mostrarNotificacao("E-mail ou senha incorretos.", "error");
+                    else if (authData.error_description?.includes('not confirmed')) mostrarNotificacao("Conta não confirmada. Verifique seu e-mail.", "error");
+                    else mostrarNotificacao(authData.error_description || "Erro ao autenticar.", "error");
+                    btn.innerHTML = 'ENTRAR'; btn.disabled = false; return;
                 }
-
-                // 2. JWT válido — agora busca dados internos do usuário
                 efJWT = authData.access_token;
-                const res = await fetch(SUPABASE_URL + '/rest/v1/usuarios?email=eq.' + encodeURIComponent(emailDigitado) + '&select=*', {
-                    headers: sbHeaders()
-                });
+                const res = await fetch(SUPABASE_URL + '/rest/v1/usuarios?email=eq.' + encodeURIComponent(emailDigitado) + '&select=*', { headers: sbHeaders() });
                 const dados = await res.json();
-
-                if (!dados.length) {
-                    mostrarNotificacao("Usuário não cadastrado no sistema.", "error");
-                    efJWT = null;
-                    btn.innerHTML = 'ENTRAR'; btn.disabled = false;
-                    return;
-                }
-
+                if (!dados.length) { mostrarNotificacao("Usuário não cadastrado.", "error"); efJWT = null; btn.innerHTML = 'ENTRAR'; btn.disabled = false; return; }
                 const user = dados[0];
-                if (user.ativo === false) {
-                    mostrarNotificacao("Conta desativada. Contate o administrador.", "error");
-                    efJWT = null;
-                    btn.innerHTML = 'ENTRAR'; btn.disabled = false;
-                    return;
-                }
-
-                // 3. Dispara 2FA como antes
+                if (user.ativo === false) { mostrarNotificacao("Conta desativada.", "error"); efJWT = null; btn.innerHTML = 'ENTRAR'; btn.disabled = false; return; }
                 tempUserPara2FA = user;
-                tempUserPara2FA._jwt = efJWT; // preserva JWT para depois do 2FA
+                tempUserPara2FA._jwt = efJWT;
                 tempUserPara2FA._refresh = authData.refresh_token || '';
                 const code2FA = Math.floor(100000 + Math.random() * 900000).toString();
-
-                await fetch(SUPABASE_URL + '/rest/v1/rpc/set_2fa_token', {
-                    method: 'POST',
-                    headers: sbHeadersJSON(),
-                    body: JSON.stringify({ p_user_id: user.id, p_token: code2FA })
-                });
-
+                await fetch(SUPABASE_URL + '/rest/v1/rpc/set_2fa_token', { method: 'POST', headers: sbHeadersJSON(), body: JSON.stringify({ p_user_id: user.id, p_token: code2FA }) });
                 try { fetch(CONFIGURACOES_DO_SISTEMA.appEmailUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: user.email, nome: user.nome, token: code2FA, tipo: '2FA' }) }); } catch(err) {}
-
                 document.getElementById('login-step-1').classList.add('hidden');
                 document.getElementById('login-step-2').classList.remove('hidden');
                 document.getElementById('codigo_2fa').value = '';
                 document.getElementById('codigo_2fa').focus();
-                mostrarNotificacao("Código de segurança enviado para o e-mail!", "info");
-
-            } catch (err) { mostrarNotificacao("Erro de comunicação com o servidor.", "error"); }
+                mostrarNotificacao("Código enviado para o e-mail!", "info");
+            } catch (err) { mostrarNotificacao("Erro de comunicação.", "error"); }
             btn.innerHTML = 'ENTRAR'; btn.disabled = false;
         }
 
@@ -1336,39 +812,27 @@
             e.preventDefault();
             const btn = document.getElementById('btn-validar-2fa');
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> VALIDANDO...'; btn.disabled = true;
-            
             const codigoDigitado = document.getElementById('codigo_2fa').value.trim();
             try {
-                // Verifica e consome o token via RPC (SECURITY DEFINER — ignora RLS)
-                const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/verify_2fa_token', {
-                    method: 'POST',
-                    headers: sbHeadersJSON(),
-                    body: JSON.stringify({ p_user_id: tempUserPara2FA.id, p_token: codigoDigitado })
-                });
+                const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/verify_2fa_token', { method: 'POST', headers: sbHeadersJSON(), body: JSON.stringify({ p_user_id: tempUserPara2FA.id, p_token: codigoDigitado }) });
                 const valido = await res.json();
                 if (valido === true) {
                     if (tempUserPara2FA._jwt) efJWT = tempUserPara2FA._jwt;
-                    // Buscar dados completos da tabela usuarios (nome, nivel, org, cliente)
                     try {
                         const uRes = await fetch(SUPABASE_URL + '/rest/v1/usuarios?email=eq.' + encodeURIComponent(tempUserPara2FA.email) + '&select=*&limit=1', { headers: sbHeaders() });
                         const uDados = await uRes.json();
                         usuarioSessao = (uDados.length > 0) ? Object.assign({}, uDados[0]) : tempUserPara2FA;
-                    } catch(e) {
-                        usuarioSessao = tempUserPara2FA;
-                    }
+                    } catch(e) { usuarioSessao = tempUserPara2FA; }
                     usuarioSessao._jwt = undefined;
-                    if(document.getElementById('lembrar_login').checked) {
-                        const toSave = Object.assign({}, usuarioSessao); delete toSave._jwt;
-                        localStorage.setItem('ideia3_sessao', JSON.stringify(toSave));
-                        if (efJWT) localStorage.setItem('ideia3_refresh', tempUserPara2FA._refresh||'');
-                    }
+                    // Sempre salva a sessão após login com sucesso
+                    const toSave = Object.assign({}, usuarioSessao); delete toSave._jwt;
+                    localStorage.setItem('ideia3_sessao', JSON.stringify(toSave));
+                    if (efJWT) localStorage.setItem('ideia3_refresh', tempUserPara2FA._refresh || '');
                     configurarSessaoUI(); await carregarRelatoriosSupabase();
                     await registrarLog("Login", "Entrou no sistema (2FA)");
-                    mostrarNotificacao("Acesso liberado com sucesso!", "success");
-                } else {
-                    mostrarNotificacao("Código de segurança inválido.", "error");
-                }
-            } catch (err) { mostrarNotificacao("Erro ao validar o código.", "error"); }
+                    mostrarNotificacao("Acesso liberado!", "success");
+                } else { mostrarNotificacao("Código inválido.", "error"); }
+            } catch (err) { mostrarNotificacao("Erro ao validar.", "error"); }
             btn.innerHTML = 'VALIDAR ACESSO'; btn.disabled = false;
         }
 
@@ -1378,7 +842,6 @@
             document.getElementById('codigo_2fa').value = '';
             tempUserPara2FA = null;
         }
-        // ===================================
 
         function abrirModalSenha() { 
             document.getElementById('modal-senha').classList.remove('hidden'); 
@@ -1386,8 +849,7 @@
             document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
             document.getElementById('aba-ativacao').classList.add('active');
             document.querySelector('.modal-tab').classList.add('active');
-            const fb = document.getElementById('recuperacao-feedback');
-            if(fb) fb.style.display = 'none';
+            const fb = document.getElementById('recuperacao-feedback'); if(fb) fb.style.display = 'none';
         }
 
         async function redefinirSenha(e) {
@@ -1397,34 +859,12 @@
             const token = document.getElementById('reset_token').value.trim();
             const novaSenha = document.getElementById('reset_senha').value.trim();
             try {
-                // Verificar token e trocar senha via RPC (SECURITY DEFINER — sem precisar de JWT)
-                const resReset = await fetch(SUPABASE_URL + '/rest/v1/rpc/reset_senha_com_token', {
-                    method: 'POST',
-                    headers: { 
-                        'apikey': SUPABASE_KEY, 
-                        'Authorization': 'Bearer ' + SUPABASE_KEY,
-                        'Content-Type': 'application/json' 
-                    },
-                    body: JSON.stringify({ p_email: email, p_token: token, p_nova_senha: novaSenha })
-                });
-                if (!resReset.ok) {
-                    const errText = await resReset.text();
-                    console.error('Erro reset:', resReset.status, errText);
-                    if (resReset.status === 404) mostrarNotificacao("Função não configurada. Execute o SQL supabase_reset_senha_fn.sql no Supabase.", "error");
-                    else mostrarNotificacao("Erro ao redefinir senha ("+resReset.status+").", "error");
-                    btn.innerHTML = '<i class="fa-solid fa-unlock"></i> ATIVAR E ENTRAR'; btn.disabled = false; return;
-                }
+                const resReset = await fetch(SUPABASE_URL + '/rest/v1/rpc/reset_senha_com_token', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_email: email, p_token: token, p_nova_senha: novaSenha }) });
+                if (!resReset.ok) { mostrarNotificacao("Erro ao redefinir (" + resReset.status + ").", "error"); btn.innerHTML = '<i class="fa-solid fa-unlock"></i> ATIVAR E ENTRAR'; btn.disabled = false; return; }
                 const resultado = await resReset.json();
-                if (resultado === 'ok') {
-                    mostrarNotificacao("Senha redefinida! Faça login com a nova senha.", "success");
-                    fecharModais();
-                    document.getElementById('email').value = email;
-                    document.getElementById('password').value = novaSenha;
-                } else if (resultado === 'token_invalido') {
-                    mostrarNotificacao("Código inválido ou já utilizado.", "error");
-                } else {
-                    mostrarNotificacao("Erro: " + JSON.stringify(resultado), "error");
-                }
+                if (resultado === 'ok') { mostrarNotificacao("Senha redefinida! Faça login.", "success"); fecharModais(); document.getElementById('email').value = email; document.getElementById('password').value = novaSenha; }
+                else if (resultado === 'token_invalido') mostrarNotificacao("Código inválido.", "error");
+                else mostrarNotificacao("Erro: " + JSON.stringify(resultado), "error");
             } catch (err) { mostrarNotificacao("Erro de comunicação.", "error"); }
             btn.innerHTML = '<i class="fa-solid fa-unlock"></i> ATIVAR E ENTRAR'; btn.disabled = false;
         }
@@ -1433,8 +873,9 @@
             try {
                 const res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios?select=*`, { headers: sbHeaders() });
                 const linhas = await res.json();
-                relatoriosDoBanco = linhas.map(l => { return { id: l.id, cliente: l.cliente || "", ano: String(l.ano) || "Geral", categoria: l.categoria || "Geral", ciclo: l.ciclo || "Geral", relatorio: l.relatorio || "Relatório", link: l.link || "", cor: l.cor || "", cor_texto: l.cor_texto || "#2D3748", tipo: l.tipo || "Dashboard" }; });
-                document.getElementById('login-screen').classList.add('hidden'); document.getElementById('home-screen').classList.remove('hidden');
+                relatoriosDoBanco = linhas.map(l => ({ id: l.id, cliente: l.cliente || "", ano: String(l.ano) || "Geral", categoria: l.categoria || "Geral", ciclo: l.ciclo || "Geral", relatorio: l.relatorio || "Relatório", link: l.link || "", cor: l.cor || "", cor_texto: l.cor_texto || "#2D3748", tipo: l.tipo || "Dashboard" }));
+                document.getElementById('login-screen').classList.add('hidden'); 
+                document.getElementById('home-screen').classList.remove('hidden');
             } catch (erro) { mostrarNotificacao("Erro ao carregar os dados.", "error"); }
         }
 
@@ -1459,29 +900,27 @@
                 document.getElementById('ing_so_pasta').checked = false; toggleFileFields();
                 document.getElementById('btn-enviar-ingestao').innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> SALVAR NO AMBIENTE';
                 document.getElementById('modal-ingestao-title').innerText = "Inserir Arquivo ou Pasta";
-                atualizarCascata('all');
-                document.getElementById('modal-ingestao').classList.remove('hidden');
-            } catch(e) { }
+                atualizarCascata('all'); document.getElementById('modal-ingestao').classList.remove('hidden');
+            } catch(e) {}
         }
 
         function prepararEdicaoRelatorio(id) {
             try {
-                const rel = relatoriosDoBanco.find(r => r.id == id);
-                if(!rel) return;
+                const rel = relatoriosDoBanco.find(r => r.id == id); if(!rel) return;
                 document.getElementById('edit_relatorio_id').value = rel.id; document.getElementById('ing_cliente').value = rel.cliente; document.getElementById('ing_ano').value = rel.ano !== "Geral" ? rel.ano : ""; document.getElementById('ing_categoria').value = rel.categoria !== "Geral" ? rel.categoria : ""; document.getElementById('ing_ciclo').value = rel.ciclo !== "Geral" ? rel.ciclo : ""; document.getElementById('ing_relatorio').value = rel.relatorio !== "[PASTA_VAZIA]" ? rel.relatorio : ""; document.getElementById('ing_link').value = rel.link; document.getElementById('ing_tipo').value = rel.tipo; document.getElementById('ing_cor').value = rel.cor || "#ffffff"; document.getElementById('ing_cor_texto').value = rel.cor_texto || "#2D3748"; document.getElementById('ing_so_pasta').checked = (rel.relatorio === "[PASTA_VAZIA]");
                 toggleFileFields(); atualizarCascata('all');
                 document.getElementById('btn-enviar-ingestao').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SALVAR ALTERAÇÕES';
                 document.getElementById('modal-ingestao-title').innerText = "Editar Arquivo/Pasta"; document.getElementById('modal-ingestao').classList.remove('hidden');
-            } catch(e) { }
+            } catch(e) {}
         }
 
         function excluirRelatorioIndividual(id, nome) {
-            pedirConfirmacao(`Tem certeza que deseja excluir o arquivo "${nome}"?`, async () => {
+            pedirConfirmacao(`Excluir o arquivo "${nome}"?`, async () => {
                 try {
                     const res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios?id=eq.${id}`, { method: 'DELETE', headers: sbHeaders() });
-                    if(res.ok) { await registrarLog("Exclusão de Arquivo", `Removeu o arquivo "${nome}"`); mostrarNotificacao("Arquivo excluído.", "success"); await carregarRelatoriosSupabase(); abrirProjeto(document.getElementById('sidebar-client-name').innerText, document.getElementById('sidebar-logo-client').src); } 
-                } catch(err) { }
-            }, false); 
+                    if(res.ok) { await registrarLog("Exclusão", `Removeu "${nome}"`); mostrarNotificacao("Arquivo excluído.", "success"); await carregarRelatoriosSupabase(); abrirProjeto(document.getElementById('sidebar-client-name').innerText, document.getElementById('sidebar-logo-client').src); }
+                } catch(err) {}
+            }, false);
         }
 
         function toggleFileFields() {
@@ -1502,10 +941,10 @@
             const novoDado = { cliente: document.getElementById('ing_cliente').value, ano: document.getElementById('ing_ano').value, categoria: catVal, ciclo: cicVal, relatorio: nomeRelatorio, link: linkFinal, tipo: tipoArq, cor: corEscolhida, cor_texto: corTextoEscolhida };
             try {
                 let res;
-                if(isEdit) { res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios?id=eq.${document.getElementById('edit_relatorio_id').value}`, { method: 'PATCH', headers: sbHeadersJSON(), body: JSON.stringify(novoDado) }); if(res.ok) await registrarLog("Edição de Arquivo/Pasta", `Alterou "${nomeRelatorio}" em ${novoDado.cliente}`); } 
-                else { res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios`, { method: 'POST', headers: sbHeadersJSON(), body: JSON.stringify(novoDado) }); if(res.ok) await registrarLog("Inserção", `Adicionou "${nomeRelatorio}" em ${novoDado.cliente}`); }
-                if(res.ok) { mostrarNotificacao(isEdit ? "Alterações salvas!" : "Salvo com sucesso!", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(novoDado.cliente, document.getElementById('sidebar-logo-client').src); } 
-            } catch(err) { }
+                if(isEdit) { res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios?id=eq.${document.getElementById('edit_relatorio_id').value}`, { method: 'PATCH', headers: sbHeadersJSON(), body: JSON.stringify(novoDado) }); if(res.ok) await registrarLog("Edição", `Alterou "${nomeRelatorio}"`); } 
+                else { res = await fetch(`${SUPABASE_URL}/rest/v1/relatorios`, { method: 'POST', headers: sbHeadersJSON(), body: JSON.stringify(novoDado) }); if(res.ok) await registrarLog("Inserção", `Adicionou "${nomeRelatorio}"`); }
+                if(res.ok) { mostrarNotificacao(isEdit ? "Alterações salvas!" : "Salvo!", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(novoDado.cliente, document.getElementById('sidebar-logo-client').src); }
+            } catch(err) {}
             btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> SALVAR NO AMBIENTE'; btn.disabled = false;
         }
 
@@ -1526,8 +965,8 @@
                 if (nivel === 'ciclo') url += `&ciclo=eq.${encodeURIComponent(ciclo)}`;
                 const payload = {}; payload[nivel] = novoNome;
                 const res = await fetch(url, { method: 'PATCH', headers: sbHeadersJSON(), body: JSON.stringify(payload) });
-                if(res.ok) { await registrarLog("Renomeação", `Renomeou a pasta "${antigoNome}" para "${novoNome}" em ${cliente}`); mostrarNotificacao("Pasta renomeada!", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(cliente, document.getElementById('sidebar-logo-client').src); } 
-            } catch(err) { }
+                if(res.ok) { await registrarLog("Renomeação", `Renomeou "${antigoNome}" → "${novoNome}"`); mostrarNotificacao("Pasta renomeada!", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(cliente, document.getElementById('sidebar-logo-client').src); }
+            } catch(err) {}
             btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SALVAR ALTERAÇÕES'; btn.disabled = false;
         }
 
@@ -1539,13 +978,8 @@
 
         async function confirmarExclusaoPasta(e) {
             e.preventDefault();
-            // Reautenticar via Supabase Auth para confirmar identidade
             const senhaAdmin = document.getElementById('del_admin_senha').value;
-            const reauth = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-                method: 'POST',
-                headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: usuarioSessao.email, password: senhaAdmin })
-            });
+            const reauth = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ email: usuarioSessao.email, password: senhaAdmin }) });
             if (!reauth.ok) { mostrarNotificacao("Senha incorreta!", "error"); return; }
             const btn = document.getElementById('btn-excluir-pasta'); btn.innerHTML = 'EXCLUINDO...'; btn.disabled = true;
             const cl = document.getElementById('del_cliente').value; const a = document.getElementById('del_ano').value; const ct = document.getElementById('del_cat').value; const ci = document.getElementById('del_ciclo').value;
@@ -1554,24 +988,24 @@
                 let url = `${SUPABASE_URL}/rest/v1/relatorios?cliente=eq.${encodeURIComponent(cl)}&ano=eq.${encodeURIComponent(a)}`;
                 if (ct) url += `&categoria=eq.${encodeURIComponent(ct)}`; if (ci) url += `&ciclo=eq.${encodeURIComponent(ci)}`;
                 const res = await fetch(url, { method: 'DELETE', headers: sbHeaders() });
-                if(res.ok) { await registrarLog("Exclusão em Lote", `Apagou a pasta "${nomePastaDeletada}" e seus conteúdos em ${cl}`); mostrarNotificacao("Pasta excluída.", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(cl, document.getElementById('sidebar-logo-client').src); } 
-            } catch(err) { }
+                if(res.ok) { await registrarLog("Exclusão em Lote", `Apagou a pasta "${nomePastaDeletada}"`); mostrarNotificacao("Pasta excluída.", "success"); fecharModais(); await carregarRelatoriosSupabase(); abrirProjeto(cl, document.getElementById('sidebar-logo-client').src); }
+            } catch(err) {}
             btn.innerHTML = '<i class="fa-solid fa-trash"></i> EXCLUIR PASTA'; btn.disabled = false;
         }
 
         async function abrirGerenciarUsuarios() {
             document.getElementById('modal-usuarios').classList.remove('hidden'); resetUserForm();
-            const tbody = document.getElementById('tabela-usuarios-body'); tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Carregando usuários...</td></tr>';
+            const tbody = document.getElementById('tabela-usuarios-body'); tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Carregando...</td></tr>';
             try {
                 const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?select=*`, { headers: sbHeaders() });
                 const listaUsuarios = await res.json(); tbody.innerHTML = '';
                 listaUsuarios.forEach(u => {
                     let bCls = u.nivel === 'Admin' ? 'badge-nivel badge-admin' : (u.nivel === 'Analista' ? 'badge-nivel badge-analista' : 'badge-nivel');
-                    let btnHTML = `<button class="btn-edit-icon" onclick="prepararEdicaoUser('${u.id}', '${u.nome}', '${u.email}', '${u.org}', '${u.nivel}', '${u.projeto}')" title="Editar Permissões"><i class="fa-solid fa-pen"></i></button>`;
-                    if (u.email !== usuarioSessao.email) btnHTML += `<button class="btn-delete-icon" onclick="prepararExclusaoUser('${u.id}', '${u.nome}')" title="Excluir" style="margin-left: 5px;"><i class="fa-solid fa-trash"></i></button>`;
-                    tbody.innerHTML += `<tr><td>${u.nome}</td><td>${u.email}</td><td>${u.org}</td><td><span class="${bCls}">${u.nivel}</span></td><td style="text-align:center; min-width: 70px;">${btnHTML}</td></tr>`;
+                    let btnHTML = `<button class="btn-edit-icon" onclick="prepararEdicaoUser('${u.id}', '${u.nome}', '${u.email}', '${u.org}', '${u.nivel}', '${u.projeto}')"><i class="fa-solid fa-pen"></i></button>`;
+                    if (u.email !== usuarioSessao.email) btnHTML += `<button class="btn-delete-icon" onclick="prepararExclusaoUser('${u.id}', '${u.nome}')" style="margin-left: 5px;"><i class="fa-solid fa-trash"></i></button>`;
+                    tbody.innerHTML += `<tr><td>${u.nome}</td><td>${u.email}</td><td>${u.org}</td><td><span class="${bCls}">${u.nivel}</span></td><td style="text-align:center;">${btnHTML}</td></tr>`;
                 });
-            } catch (err) { }
+            } catch (err) {}
         }
 
         function resetUserForm() {
@@ -1593,20 +1027,20 @@
             try {
                 if(isEdit) {
                     const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?id=eq.${document.getElementById('edit_user_id').value}`, { method: 'PATCH', headers: sbHeadersJSON(), body: JSON.stringify(baseUser) });
-                    if(res.ok) { await registrarLog("Gestão de Acesso", `Alterou permissões de ${baseUser.nome}`); mostrarNotificacao("Usuário atualizado!", "success"); resetUserForm(); abrirGerenciarUsuarios(); } 
+                    if(res.ok) { await registrarLog("Gestão", `Alterou permissões de ${baseUser.nome}`); mostrarNotificacao("Usuário atualizado!", "success"); resetUserForm(); abrirGerenciarUsuarios(); }
                 } else {
                     const code = Math.floor(100000 + Math.random() * 900000).toString(); baseUser.token = code;
                     const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios`, { method: 'POST', headers: sbHeadersJSON(), body: JSON.stringify(baseUser) });
-                    if(res.ok) { try { fetch(CONFIGURACOES_DO_SISTEMA.appEmailUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: baseUser.email, nome: baseUser.nome, token: code, tipo: 'ativacao' }) }); } catch(err) {} await registrarLog("Novo Acesso", `Convidou o usuário ${baseUser.nome}`); mostrarNotificacao("Acesso criado e e-mail disparado!", "success"); resetUserForm(); abrirGerenciarUsuarios(); } 
+                    if(res.ok) { try { fetch(CONFIGURACOES_DO_SISTEMA.appEmailUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: baseUser.email, nome: baseUser.nome, token: code, tipo: 'ativacao' }) }); } catch(err) {} await registrarLog("Novo Acesso", `Convidou ${baseUser.nome}`); mostrarNotificacao("Acesso criado!", "success"); resetUserForm(); abrirGerenciarUsuarios(); }
                 }
-            } catch (err) { }
+            } catch (err) {}
             btn.disabled = false;
         }
 
         function prepararExclusaoUser(id, nome) {
             pedirConfirmacao(`Remover acesso de ${nome}?`, async () => {
-                try { const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?id=eq.${id}`, { method: 'DELETE', headers: sbHeaders() }); if (res.ok) { await registrarLog("Exclusão de Acesso", `Removeu o acesso de ${nome}`); mostrarNotificacao("Usuário removido.", "success"); abrirGerenciarUsuarios(); } } catch(err) {}
-            }, true); 
+                try { const res = await fetch(`${SUPABASE_URL}/rest/v1/usuarios?id=eq.${id}`, { method: 'DELETE', headers: sbHeaders() }); if (res.ok) { await registrarLog("Exclusão", `Removeu acesso de ${nome}`); mostrarNotificacao("Usuário removido.", "success"); abrirGerenciarUsuarios(); } } catch(err) {}
+            }, true);
         }
 
         function getIconePorTipo(tipo) {
@@ -1619,65 +1053,56 @@
         function toggleSidebar() { const body = document.getElementById('main-body'); body.classList.toggle('sidebar-hidden'); document.getElementById('toggle-sidebar-icon').className = body.classList.contains('sidebar-hidden') ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'; }
 
         function voltarParaHome() {
-            document.getElementById('dashboard-screen').classList.add('hidden'); document.getElementById('home-screen').classList.remove('hidden'); document.getElementById('iframe-wrapper').innerHTML = ''; 
+            document.getElementById('dashboard-screen').classList.add('hidden'); document.getElementById('home-screen').classList.remove('hidden'); document.getElementById('iframe-wrapper').innerHTML = '';
             const h = document.getElementById('dynamic-header'); const title = document.getElementById('dashboard-title');
-            h.style.backgroundColor = "white"; h.style.color = "#2D3748"; title.style.color = "#2D3748"; 
+            h.style.backgroundColor = "white"; h.style.color = "#2D3748"; title.style.color = "#2D3748";
             h.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = "#94a3b8"); h.querySelectorAll('.toggle-btn').forEach(btn => { btn.style.color = "#475569"; btn.style.backgroundColor = "#f1f5f9"; });
             h.querySelectorAll('.user-greeting span').forEach(sp => sp.style.color = ""); h.querySelectorAll('.div-barra-topo').forEach(d => d.style.backgroundColor = "#e2e8f0");
             if (document.getElementById('main-body').classList.contains('sidebar-hidden')) { toggleSidebar(); }
         }
 
         function fazerLogout() {
-            // Revogar token no Supabase Auth
-            if (efJWT) {
-                fetch(SUPABASE_URL + '/auth/v1/logout', {
-                    method: 'POST',
-                    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + efJWT }
-                }).catch(function(){});
-                efJWT = null;
-            } localStorage.removeItem('ideia3_sessao'); localStorage.removeItem('ideia3_refresh'); location.reload(); }
+            if (efJWT) { fetch(SUPABASE_URL + '/auth/v1/logout', { method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + efJWT } }).catch(function(){}); efJWT = null; }
+            localStorage.removeItem('ideia3_sessao'); localStorage.removeItem('ideia3_refresh'); location.reload();
+        }
         function fecharModais() { document.querySelectorAll('.modal-overlay').forEach(el => el.classList.add('hidden')); }
-        
+
         function abrirProjeto(cliente, logo) {
             document.getElementById('home-screen').classList.add('hidden'); document.getElementById('dashboard-screen').classList.remove('hidden');
             document.getElementById('sidebar-client-name').innerText = cliente; document.getElementById('sidebar-logo-client').src = logo;
             const logoSecundaria = document.getElementById('sidebar-logo-secundario');
-            if(cliente === 'O Boticário') { logoSecundaria.src = CONFIGURACOES_DO_SISTEMA.logoAnfora; logoSecundaria.title = "Grupo Boticário"; logoSecundaria.style.filter = "brightness(0) invert(1)"; logoSecundaria.classList.remove('hidden'); } 
-            else if (cliente === 'Eudora') { logoSecundaria.src = CONFIGURACOES_DO_SISTEMA.logoEudoraSide; logoSecundaria.title = "Eudora"; logoSecundaria.style.filter = "none"; logoSecundaria.classList.remove('hidden'); } 
+            if(cliente === 'O Boticário') { logoSecundaria.src = CONFIGURACOES_DO_SISTEMA.logoAnfora; logoSecundaria.title = "Grupo Boticário"; logoSecundaria.style.filter = "brightness(0) invert(1)"; logoSecundaria.classList.remove('hidden'); }
+            else if (cliente === 'Eudora') { logoSecundaria.src = CONFIGURACOES_DO_SISTEMA.logoEudoraSide; logoSecundaria.title = "Eudora"; logoSecundaria.style.filter = "none"; logoSecundaria.classList.remove('hidden'); }
             else { logoSecundaria.classList.add('hidden'); }
             montarMenuLateral(cliente); navegarShowcase(cliente, null, null, null);
-            // Botões EF no header: só para O Boticário + IDEIA3
-            const isEFVisivel = (cliente === 'O Boticário' && usuarioSessao.org === 'IDEIA3');
-            const btnEF = document.getElementById('btn-ef-planejar'); if(btnEF) btnEF.classList.toggle('hidden', !isEFVisivel);
-
         }
 
         function montarMenuLateral(cliente) {
-            const menu = document.getElementById('menu-dinamico'); menu.innerHTML = ''; 
+            const menu = document.getElementById('menu-dinamico'); menu.innerHTML = '';
             const dados = relatoriosDoBanco.filter(item => item.cliente.toLowerCase() === cliente.toLowerCase());
             const estrutura = {};
             dados.forEach(l => { if (!estrutura[l.ano]) estrutura[l.ano] = {}; if (!estrutura[l.ano][l.categoria]) estrutura[l.ano][l.categoria] = {}; if (!estrutura[l.ano][l.categoria][l.ciclo]) estrutura[l.ano][l.categoria][l.ciclo] = []; estrutura[l.ano][l.categoria][l.ciclo].push(l); });
             const anosOrdenados = Object.keys(estrutura).sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true}));
             for (const ano of anosOrdenados) {
-                let acoesAno = ""; if(usuarioSessao.nivel === 'Admin') { acoesAno = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','ano','${ano}','${ano}','','')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','','')" title="Excluir Pasta"><i class="fa-solid fa-trash"></i></button></div>`; }
+                let acoesAno = ""; if(usuarioSessao.nivel === 'Admin') { acoesAno = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','ano','${ano}','${ano}','','')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','','')" title="Excluir"><i class="fa-solid fa-trash"></i></button></div>`; }
                 let h = `<div class="folder-container"><div class="folder-item-row" onclick="navegarShowcase('${cliente}','${ano}',null,null)"><div class="arrow-zone" onclick="event.stopPropagation(); toggleF(this)"><i class="fa-solid fa-chevron-right"></i></div><div class="text-zone"><span><i class="fa-regular fa-folder"></i> ${ano}</span> ${acoesAno}</div></div><div class="folder-content">`;
                 const catsOrdenadas = Object.keys(estrutura[ano]).sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true}));
                 for (const cat of catsOrdenadas) {
                     if(cat && cat !== "Geral") {
-                        let acoesCat = ""; if(usuarioSessao.nivel === 'Admin') { acoesCat = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','categoria','${cat}','${ano}','${cat}','')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','${cat}','')" title="Excluir Pasta"><i class="fa-solid fa-trash"></i></button></div>`; }
+                        let acoesCat = ""; if(usuarioSessao.nivel === 'Admin') { acoesCat = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','categoria','${cat}','${ano}','${cat}','')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','${cat}','')" title="Excluir"><i class="fa-solid fa-trash"></i></button></div>`; }
                         h += `<div class="folder-container"><div class="folder-item-row" onclick="navegarShowcase('${cliente}','${ano}','${cat}',null)"><div class="arrow-zone" onclick="event.stopPropagation(); toggleF(this)"><i class="fa-solid fa-chevron-right"></i></div><div class="text-zone"><span><i class="fa-regular fa-folder"></i> ${cat}</span> ${acoesCat}</div></div><div class="folder-content">`;
                     }
                     const ciclosOrdenados = Object.keys(estrutura[ano][cat]).sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true}));
                     for (const cic of ciclosOrdenados) {
                         if(cic && cic !== "Geral") {
-                            let acoesCiclo = ""; if(usuarioSessao.nivel === 'Admin') { acoesCiclo = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','ciclo','${cic}','${ano}','${cat}','${cic}')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','${cat}','${cic}')" title="Excluir Pasta"><i class="fa-solid fa-trash"></i></button></div>`; }
+                            let acoesCiclo = ""; if(usuarioSessao.nivel === 'Admin') { acoesCiclo = `<div class="folder-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="abrirModalEditarPasta('${cliente}','ciclo','${cic}','${ano}','${cat}','${cic}')" title="Renomear"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="abrirModalExcluirPasta('${cliente}','${ano}','${cat}','${cic}')" title="Excluir"><i class="fa-solid fa-trash"></i></button></div>`; }
                             h += `<div class="folder-container"><div class="folder-item-row" onclick="navegarShowcase('${cliente}','${ano}','${cat}','${cic}')"><div class="arrow-zone" onclick="event.stopPropagation(); toggleF(this)"><i class="fa-solid fa-chevron-right"></i></div><div class="text-zone"><span><i class="fa-regular fa-folder"></i> ${cic}</span> ${acoesCiclo}</div></div><div class="folder-content">`;
                         }
                         estrutura[ano][cat][cic].sort((a,b) => String(a.relatorio).localeCompare(String(b.relatorio), undefined, {numeric: true}));
                         estrutura[ano][cat][cic].forEach(r => {
                             if(r.relatorio !== '[PASTA_VAZIA]') {
                                 const nSeguro = r.relatorio.replace(/'/g, "\\'"); const st = getIconePorTipo(r.tipo);
-                                let btnAcoesIndividuais = ""; if (usuarioSessao.nivel === 'Admin' || usuarioSessao.nivel === 'Analista') { btnAcoesIndividuais = `<div class="file-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="prepararEdicaoRelatorio('${r.id}')" title="Editar Arquivo"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="excluirRelatorioIndividual('${r.id}', '${nSeguro}')" title="Excluir Arquivo"><i class="fa-solid fa-trash"></i></button></div>`; }
+                                let btnAcoesIndividuais = ""; if (usuarioSessao.nivel === 'Admin' || usuarioSessao.nivel === 'Analista') { btnAcoesIndividuais = `<div class="file-actions" onclick="event.stopPropagation();"><button class="btn-edit-icon" onclick="prepararEdicaoRelatorio('${r.id}')"><i class="fa-solid fa-pen"></i></button><button class="btn-delete-icon" onclick="excluirRelatorioIndividual('${r.id}', '${nSeguro}')"><i class="fa-solid fa-trash"></i></button></div>`; }
                                 h += `<div class="file-item" onclick="abrirDash('${nSeguro}','${r.link}','${r.cor}','${r.cor_texto}',this)"><div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid ${st.icon}" style="color:${st.color}; font-size: 1rem;"></i> ${r.relatorio}</div>${btnAcoesIndividuais}</div>`;
                             }
                         });
@@ -1698,7 +1123,7 @@
             const wrapper = document.getElementById('iframe-wrapper');
             wrapper.innerHTML = `<div id="welcome-area"><p style="font-size:0.7rem; color:#94a3b8; margin-bottom:5px;">${cliente} ${ano?'> '+ano:''} ${cat && cat!=='Geral'?'> '+cat:''} ${cic && cic!=='Geral'?'> '+cic:''}</p><h2 style="font-size:1.1rem; margin-bottom:25px; color:#1e293b;">${(cic && cic!=='Geral') ? cic : (cat && cat!=='Geral') ? cat : ano || "Documentos"}</h2><div class="shortcut-grid" id="sgrid"></div></div>`;
             const grid = document.getElementById('sgrid'); const dados = relatoriosDoBanco.filter(i => i.cliente.toLowerCase() === cliente.toLowerCase());
-            if (!ano) { [...new Set(dados.map(i => i.ano))].sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true})).forEach(item => criarCard(item, 'fa-regular fa-folder', '#94a3b8', () => navegarShowcase(cliente, item, null, null), grid)); } 
+            if (!ano) { [...new Set(dados.map(i => i.ano))].sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true})).forEach(item => criarCard(item, 'fa-regular fa-folder', '#94a3b8', () => navegarShowcase(cliente, item, null, null), grid)); }
             else if (!cat) {
                 const itensCat = dados.filter(i => i.ano === ano); [...new Set(itensCat.map(i => i.categoria))].sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric: true})).forEach(item => { if (item !== "Geral") criarCard(item, 'fa-regular fa-folder', '#94a3b8', () => navegarShowcase(cliente, ano, item, null), grid); });
                 itensCat.filter(i => i.categoria === "Geral" && i.relatorio !== '[PASTA_VAZIA]').sort((a,b) => String(a.relatorio).localeCompare(String(b.relatorio), undefined, {numeric: true})).forEach(r => { const st = getIconePorTipo(r.tipo); criarCard(r.relatorio, st.icon, st.color, () => abrirDash(r.relatorio, r.link, r.cor, r.cor_texto, null), grid); });
@@ -1710,16 +1135,16 @@
 
         function criarCard(t, ic, color, ac, cont) { const c = document.createElement('div'); c.className = `shortcut-card`; c.onclick = ac; c.innerHTML = `<i class="fa-solid ${ic}" style="color: ${color}; font-size: 2.2rem; margin-bottom: 15px;"></i><h3>${t}</h3>`; cont.appendChild(c); }
         function toggleF(el) { el.classList.toggle('open'); el.parentElement.nextElementSibling.classList.toggle('open'); }
-        
+
         function abrirDash(titulo, url, cor, corTexto, el) {
             linkAtual = url; if(el) { document.querySelectorAll('.file-item').forEach(f => f.classList.remove('active')); el.classList.add('active'); }
             const h = document.getElementById('dynamic-header'); const title = document.getElementById('dashboard-title');
-            if (cor && cor.startsWith('#')) { 
-                h.style.backgroundColor = cor; h.style.color = corTexto; title.style.color = corTexto; 
+            if (cor && cor.startsWith('#')) {
+                h.style.backgroundColor = cor; h.style.color = corTexto; title.style.color = corTexto;
                 h.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = corTexto); h.querySelectorAll('.toggle-btn').forEach(btn => { btn.style.color = corTexto; btn.style.backgroundColor = "rgba(0,0,0,0.1)"; });
                 h.querySelectorAll('.user-greeting span').forEach(sp => sp.style.color = corTexto); h.querySelectorAll('.div-barra-topo').forEach(d => d.style.backgroundColor = "rgba(255,255,255,0.2)");
-            } else { 
-                h.style.backgroundColor = "white"; h.style.color = "#2D3748"; title.style.color = "#2D3748"; 
+            } else {
+                h.style.backgroundColor = "white"; h.style.color = "#2D3748"; title.style.color = "#2D3748";
                 h.querySelectorAll('.icon-btn').forEach(btn => btn.style.color = "#94a3b8"); h.querySelectorAll('.toggle-btn').forEach(btn => { btn.style.color = "#475569"; btn.style.backgroundColor = "#f1f5f9"; });
                 h.querySelectorAll('.user-greeting span').forEach(sp => sp.style.color = ""); h.querySelectorAll('.div-barra-topo').forEach(d => d.style.backgroundColor = "#e2e8f0");
             }
@@ -1727,1038 +1152,11 @@
         }
 
         // ============================================================
-        // MÓDULO PLANEJAMENTO EXTRA FRANQUIADOS
-        // ============================================================
-        let efCPs = [];
-        let efHistorico = {};
-        let efSelecionados = [];
-        let efFiltroUF = null;
-        let efFiltroClube = null;
-        let efPopCache = {};
-        let efUltimoResultado = [];
-        let efConsultaDados = [];
-        let efConsultaFiltroVia = null;
-        let efCidadesModalCP = null;
-        let efOrigemTela = 'dashboard';
-        let efPeriodCiclos = 3;
-        let efVeiculosAtivos = new Set();
-
-        // NAVEGAÇÃO
-        function abrirSimulacaoEF() {
-            efOrigemTela = document.getElementById('dashboard-screen').classList.contains('hidden') ? 'home' : 'dashboard';
-            ['home-screen','dashboard-screen','consulta-ef-screen'].forEach(id=>document.getElementById(id).classList.add('hidden'));
-            document.getElementById('planejamento-ef-screen').classList.remove('hidden');
-            document.getElementById('ef-resultado').classList.add('hidden');
-            if (efCPs.length === 0) efCarregar();
-            efMudarAba('configurar');
-        }
-        function voltarParaHomeDeEF() {
-            document.getElementById('planejamento-ef-screen').classList.add('hidden');
-            document.getElementById(efOrigemTela==='dashboard'?'dashboard-screen':'home-screen').classList.remove('hidden');
-        }
-        function abrirConsultaEF() {
-            efOrigemTela='dashboard';
-            ['home-screen','dashboard-screen','planejamento-ef-screen'].forEach(id=>document.getElementById(id).classList.add('hidden'));
-            document.getElementById('consulta-ef-screen').classList.remove('hidden');
-            efCarregarConsulta();
-        }
-        function fecharConsultaEF() {
-            document.getElementById('consulta-ef-screen').classList.add('hidden');
-            document.getElementById('dashboard-screen').classList.remove('hidden');
-        }
-
-        // PERÍODO
-        function efSetPeriod(n, el) {
-            efPeriodCiclos = n;
-            document.querySelectorAll('.ef-period-btn').forEach(b=>b.classList.remove('ef-period-ativo'));
-            el.classList.add('ef-period-ativo');
-            document.getElementById('ef-period-info').innerText = n===0 ? 'Usando todo o histórico disponível' : `Usando os ${n} ciclos mais recentes`;
-        }
-        function efHistFiltrado(codigoCP) {
-            const all = (efHistorico[codigoCP]||[]);
-            if (efPeriodCiclos===0||!all.length) return all;
-            const ciclos = [...new Set(all.map(h=>h.ciclo).filter(Boolean))].sort().reverse().slice(0,efPeriodCiclos);
-            return all.filter(h=>ciclos.includes(h.ciclo));
-        }
-
-        // VEÍCULOS
-        function efMontarVeiculos() {
-            const todos = [...new Set(Object.values(efHistorico).flat().map(h=>h.veiculo).filter(Boolean))].sort();
-            efVeiculosAtivos = new Set(todos);
-            const wrap = document.getElementById('ef-veiculos-wrap');
-            if (!todos.length) { wrap.innerHTML='<span style="font-size:0.75rem;color:#94a3b8;font-style:italic;">Sem dados</span>'; return; }
-            wrap.innerHTML = todos.map(v=>`<button class="ef-veiculo-btn ef-veiculo-ativo" data-v="${v}" onclick="efToggleVeiculo('${v}',this)">${v}</button>`).join('');
-        }
-        function efToggleVeiculo(v, el) {
-            if (efVeiculosAtivos.has(v)) {
-                if (efVeiculosAtivos.size===1) { mostrarNotificacao('Selecione ao menos 1 veículo.','info'); return; }
-                efVeiculosAtivos.delete(v); el.classList.remove('ef-veiculo-ativo');
-            } else { efVeiculosAtivos.add(v); el.classList.add('ef-veiculo-ativo'); }
-        }
-
-        // NOME AUTOMÁTICO
-        function efGerarNome() {
-            const ciclo=(document.getElementById('ef_ciclo').value||'').trim();
-            const cps=efSelecionados.map(function(c){return c.nome_cp||c.codigo_cp;});
-            const hoje=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit'});
-            let nome='EF';
-            if(ciclo) nome+=' · C'+ciclo;
-            if(cps.length) nome+=' · '+(cps.length<=3?cps.join(', '):cps.slice(0,2).join(', ')+' +'+(cps.length-2));
-            nome+=' · '+hoje;
-            const preview=document.getElementById('ef-nome-preview');
-            const gerado=document.getElementById('ef-nome-gerado');
-            if(preview&&gerado){gerado.innerText=nome;preview.classList.remove('hidden');}
-            // Update verba total display
-            const verbaTot=efSelecionados.reduce(function(s,cp){return s+Object.values(cp.veiculosPlano||{}).reduce(function(a,v){return a+v;},0);},0);
-            const el=document.getElementById('ef-verba-total-display');
-            if(el) el.innerText='R$ '+verbaTot.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
-            return nome;
-        }
-
-        // CARREGAR
-        async function efCarregar() {
-            document.getElementById('ef-lista-cps').innerHTML='<div style="padding:20px;text-align:center;color:#94a3b8;font-size:0.85rem;"><i class="fa-solid fa-spinner fa-spin"></i> Carregando CPs...</div>';
-            try {
-                let allCPs=[],offset=0;
-                while(true){
-                    const res=await fetch(`${SUPABASE_URL}/rest/v1/cp_municipios?select=codigo_cp,nome_cp,cidade,uf,regiao,clube,codigo_ibge,populacao&order=nome_cp&offset=${offset}&limit=1000`,{headers:Object.assign(sbHeaders(),{'Range-Unit':'items','Range':offset+'-'+(offset+999)})});
-                    const page=await res.json(); allCPs=allCPs.concat(page);
-                    if(page.length<1000) break; offset+=1000;
-                }
-                let allHist=[],hoffset=0;
-                while(true){
-                    const res=await fetch(`${SUPABASE_URL}/rest/v1/historico_cp?select=*&offset=${hoffset}&limit=1000`,{headers:Object.assign(sbHeaders(),{'Range-Unit':'items','Range':hoffset+'-'+(hoffset+999)})});
-                    const page=await res.json(); allHist=allHist.concat(page);
-                    if(page.length<1000) break; hoffset+=1000;
-                }
-                const agr={};
-                allCPs.forEach(r=>{
-                    if(!agr[r.codigo_cp]) agr[r.codigo_cp]={codigo_cp:r.codigo_cp,nome_cp:r.nome_cp,cidades:[],uf:r.uf,regiao:r.regiao,clube:r.clube};
-                    if(!agr[r.codigo_cp].cidades.find(c=>c.cidade===r.cidade&&c.uf===r.uf))
-                        agr[r.codigo_cp].cidades.push({cidade:r.cidade,uf:r.uf,codigo_ibge:r.codigo_ibge,populacao:r.populacao,ativo:true});
-                });
-                efCPs=Object.values(agr).sort((a,b)=>(a.nome_cp||a.codigo_cp).localeCompare(b.nome_cp||b.codigo_cp));
-                efHistorico={};
-                allHist.forEach(h=>{
-                    const key=(h.codigo_cp||'').trim();
-                    if(!key||key==='NA') return;
-                    if(!efHistorico[key]) efHistorico[key]=[];
-                    efHistorico[key].push(h);
-                });
-                efMontarFiltros(); efMontarVeiculos(); efRenderLista(efCPs);
-            } catch(e){
-                document.getElementById('ef-lista-cps').innerHTML='<div style="padding:20px;text-align:center;color:#ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Erro ao carregar.</div>';
-                console.error(e);
-            }
-        }
-
-        function efMontarFiltros(){
-            const ufs=[...new Set(efCPs.map(c=>c.uf))].filter(Boolean).sort();
-            const clubes=[...new Set(efCPs.map(c=>c.clube))].filter(Boolean).sort();
-            let h='<span class="ef-tag ef-ativo" onclick="efFiltroRapido(null,null,this)">Todos</span>';
-            ufs.forEach(u=>{h+=`<span class="ef-tag" onclick="efFiltroRapido('${u}',null,this)">${u}</span>`;});
-            clubes.forEach(cl=>{h+=`<span class="ef-tag" onclick="efFiltroRapido(null,'${encodeURIComponent(cl)}',this)">${cl}</span>`;});
-            document.getElementById('ef-filtros').innerHTML=h;
-        }
-        function efFiltroRapido(uf,clube,el){
-            document.querySelectorAll('#ef-filtros .ef-tag').forEach(t=>t.classList.remove('ef-ativo'));
-            el.classList.add('ef-ativo'); efFiltroUF=uf; efFiltroClube=clube?decodeURIComponent(clube):null; efFiltrar();
-        }
-        function efFiltrar(){
-            const q=(document.getElementById('ef_busca').value||'').toLowerCase().trim();
-            let lista=efCPs;
-            if(efFiltroUF) lista=lista.filter(c=>c.uf===efFiltroUF);
-            if(efFiltroClube) lista=lista.filter(c=>c.clube===efFiltroClube);
-            if(q) lista=lista.filter(c=>c.codigo_cp.toLowerCase().includes(q)||(c.nome_cp||'').toLowerCase().includes(q));
-            efRenderLista(lista);
-        }
-        function efRenderLista(lista){
-            const cont=document.getElementById('ef-lista-cps');
-            if(!lista.length){cont.innerHTML='<div style="padding:18px;text-align:center;color:#94a3b8;">Nenhum CP encontrado.</div>';return;}
-            const selIds=efSelecionados.map(function(c){return c.codigo_cp;});
-            cont.innerHTML=lista.map(function(cp){
-                const sel=selIds.includes(cp.codigo_cp);
-                const badge=efBadge(cp.codigo_cp);
-                const veiculos=[...new Set(efHistFiltrado(cp.codigo_cp).map(function(h){return h.veiculo;}).filter(Boolean))];
-                const cod=cp.codigo_cp;
-                return '<div class="ef-cp-item'+(sel?' ef-sel':'')+'" data-cp="'+encodeURIComponent(cod)+'" style="cursor:pointer;'+(sel?'opacity:0.6;':'')+'">'
-                    +'<div style="width:20px;height:20px;border-radius:5px;border:2px solid '+(sel?'#f4a504':'#e2e8f0')+';background:'+(sel?'#f4a504':'white')+';display:flex;align-items:center;justify-content:center;flex-shrink:0;pointer-events:none;">'
-                        +(sel?'<i class="fa-solid fa-check" style="color:#111;font-size:0.6rem;pointer-events:none;"></i>':'')
-                    +'</div>'
-                    +'<div style="flex:1;min-width:0;">'
-                        +'<div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;">'
-                            +'<span class="ef-cod">'+cod+'</span>'
-                            +'<span class="ef-nome-cp">'+(cp.nome_cp||'—')+'</span>'
-                            +'<span class="ef-hist-badge '+badge.cls+'">'+badge.label+'</span>'
-                        +'</div>'
-                        +'<div class="ef-meta-cp"><i class="fa-solid fa-city" style="font-size:0.6rem;"></i> '+cp.cidades.length+' cid. · '+(cp.uf||'')+' '+veiculos.slice(0,3).map(function(v){return '<span class="ef-vt">'+v+'</span>';}).join('')+(veiculos.length>3?'<span class="ef-vt">+'+( veiculos.length-3)+'</span>':'')+'</div>'
-                    +'</div>'
-                    +(sel?'<span style="font-size:0.65rem;background:#fef3c7;color:#92400e;border-radius:5px;padding:2px 7px;font-weight:700;flex-shrink:0;white-space:nowrap;">✓ na sim.</span>':'<i class="fa-solid fa-chevron-right" style="color:#e2e8f0;font-size:0.65rem;flex-shrink:0;"></i>')
-                +'</div>';
-            }).join('');
-            // Event delegation — avoids all inline onclick issues
-            cont.onclick = function(e){
-                const item = e.target.closest('[data-cp]');
-                if(item) efSelecionarCP(decodeURIComponent(item.dataset.cp));
-            };
-        }
-        function efBadge(codigoCP){
-            const hist=efHistFiltrado(codigoCP).filter(h=>parseFloat(h.investimento||0)>0&&parseInt(h.cadastros||0)>0);
-            if(!hist.length) return{cls:'ef-h-none',label:'Sem histórico'};
-            const inv=hist.reduce((s,h)=>s+parseFloat(h.investimento||0),0);
-            const cad=hist.reduce((s,h)=>s+parseInt(h.cadastros||0),0);
-            const cpc=inv/cad; const med=efMedianaCPC();
-            if(!med) return{cls:'ef-h-none',label:`CPCad R$${cpc.toFixed(0)}`};
-            if(cpc<=med*0.9)  return{cls:'ef-h-ok',  label:`CPCad R$${cpc.toFixed(0)} ✓`};
-            if(cpc<=med*1.4)  return{cls:'ef-h-warn', label:`CPCad R$${cpc.toFixed(0)} ~`};
-            return{cls:'ef-h-bad',label:`CPCad R$${cpc.toFixed(0)} ✗`};
-        }
-        function efMedianaCPC(){
-            const porCP={};
-            Object.keys(efHistorico).forEach(k=>{
-                const hist=efHistFiltrado(k).filter(h=>parseFloat(h.investimento||0)>0&&parseInt(h.cadastros||0)>0);
-                if(!hist.length) return;
-                if(!porCP[k]) porCP[k]={inv:0,cad:0};
-                hist.forEach(h=>{porCP[k].inv+=parseFloat(h.investimento||0);porCP[k].cad+=parseInt(h.cadastros||0);});
-            });
-            const cpcs=Object.values(porCP).filter(x=>x.cad>0).map(x=>x.inv/x.cad).sort((a,b)=>a-b);
-            return cpcs.length?cpcs[Math.floor(cpcs.length/2)]:null;
-        }
-        function efCPM(codigoCP){
-            const hist=efHistFiltrado(codigoCP).filter(h=>efVeiculosAtivos.has(h.veiculo)&&parseFloat(h.investimento||0)>0&&parseFloat(h.impressoes||0)>0);
-            if(hist.length){
-                const inv=hist.reduce((s,h)=>s+parseFloat(h.investimento||0),0);
-                const imp=hist.reduce((s,h)=>s+parseFloat(h.impressoes||0),0);
-                return (inv/imp)*1000;
-            }
-            // fallback global
-            const geral=Object.keys(efHistorico).flatMap(k=>efHistFiltrado(k)).filter(h=>efVeiculosAtivos.has(h.veiculo)&&parseFloat(h.investimento||0)>0&&parseFloat(h.impressoes||0)>0);
-            if(!geral.length) return null;
-            const inv=geral.reduce((s,h)=>s+parseFloat(h.investimento||0),0);
-            const imp=geral.reduce((s,h)=>s+parseFloat(h.impressoes||0),0);
-            return (inv/imp)*1000;
-        }
-        function efCPCadUF(uf){
-            let inv=0,cad=0;
-            efCPs.filter(cp=>cp.uf===uf&&efHistorico[cp.codigo_cp]).forEach(cp=>{
-                const hist=efHistFiltrado(cp.codigo_cp).filter(h=>parseFloat(h.investimento||0)>0&&parseInt(h.cadastros||0)>0);
-                hist.forEach(h=>{inv+=parseFloat(h.investimento||0);cad+=parseInt(h.cadastros||0);});
-            });
-            return cad>0?inv/cad:null;
-        }
-
-        // ADD CP STATE
-        let efCPEmEdicao = null;
-
-        function efSelecionarCP(codigoCP) {
-            const cp = efCPs.find(function(c){return c.codigo_cp===codigoCP;});
-            if(!cp) return;
-            if(efSelecionados.find(function(s){return s.codigo_cp===codigoCP;})){
-                if(!confirm('Remover '+cp.nome_cp+' da simulação?')) return;
-                efRemover(codigoCP); return;
-            }
-            efCPEmEdicao = JSON.parse(JSON.stringify(cp));
-            efCPEmEdicao.cidades.forEach(function(c){if(c.ativo===undefined)c.ativo=true;});
-            efCPEmEdicao.veiculosPlano = {};
-            // Preencher header do CP
-            document.getElementById('ef-add-cp-nome').innerText = cp.nome_cp||cp.codigo_cp;
-            const subEl=document.getElementById('ef-add-cp-sub');
-            if(subEl){
-                const total=efCPEmEdicao.cidades.length;
-                const ufs=[...new Set(efCPEmEdicao.cidades.map(function(x){return x.uf;}))].filter(Boolean).join(', ');
-                subEl.innerText=cp.codigo_cp+' · '+total+' cidade'+(total>1?'s':'')+' · '+ufs;
-            }
-            // City count button
-            const total=efCPEmEdicao.cidades.length;
-            const ativas=efCPEmEdicao.cidades.filter(function(c){return c.ativo!==false;}).length;
-            const countEl=document.getElementById('ef-add-cidades-count');
-            if(countEl) countEl.innerText=ativas+'/'+total+' cidades';
-            // Highlight selected item in list
-            document.querySelectorAll('.ef-cp-item').forEach(function(el){el.style.background='';});
-            const selItem=document.querySelector('[data-cp="'+encodeURIComponent(codigoCP)+'"]');
-            if(selItem) selItem.style.background='#fffbea';
-            // Show panel, hide empty state
-            const emptyEl=document.getElementById('ef-add-empty');
-            if(emptyEl) emptyEl.style.display='none';
-            document.getElementById('ef-add-veiculo-wrap').classList.remove('hidden');
-            efRenderAddVeiculos();
-        }
-
-        function efRenderAddVeiculos() {
-            if(!efCPEmEdicao) return;
-            const todos = [...new Set(Object.values(efHistorico).flat().map(function(h){return h.veiculo;}).filter(Boolean))].sort();
-            const wrap = document.getElementById('ef-add-veiculos-lista');
-            if(!wrap) return;
-            wrap.innerHTML = todos.map(function(v){
-                const hv = (efHistorico[efCPEmEdicao.codigo_cp]||[]).filter(function(h){return h.veiculo===v&&parseFloat(h.investimento||0)>0;});
-                const invH = hv.reduce(function(s,h){return s+parseFloat(h.investimento||0);},0);
-                const impH = hv.reduce(function(s,h){return s+parseFloat(h.impressoes||0);},0);
-                const cadH = hv.reduce(function(s,h){return s+parseInt(h.cadastros||0);},0);
-                const cpmH = impH>0?(invH/impH)*1000:null;
-                const cpcH = cadH>0?invH/cadH:null;
-                const key = v.replace(/[^a-zA-Z0-9]/g,'-');
-                const histInfo = invH>0
-                    ? 'R$ '+invH.toLocaleString('pt-BR',{maximumFractionDigits:0})+(cpmH?' · CPM R$'+cpmH.toFixed(0):'')+(cpcH?' · CPCad R$'+cpcH.toFixed(0):'')
-                    : 'sem histórico neste CP';
-                const histColor = invH>0?'#64748b':'#94a3b8';
-                return '<div id="ef-addv-row-'+key+'" data-veiculo="'+encodeURIComponent(v)+'" style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:white;border:1.5px solid #e2e8f0;border-radius:8px;cursor:pointer;" onclick="efToggleVeiculoAdd(this)">'
-                    +'<input type="checkbox" id="ef-addv-chk-'+key+'" style="width:15px;height:15px;accent-color:#f4a504;cursor:pointer;flex-shrink:0;pointer-events:none;" >'
-                    +'<label style="flex:0 0 140px;font-weight:700;font-size:0.78rem;color:#1e293b;cursor:pointer;pointer-events:none;">'+v+'</label>'
-                    +'<span style="flex:1;font-size:0.68rem;color:'+histColor+';">'+histInfo+'</span>'
-                    +'<div style="display:flex;align-items:center;gap:4px;flex-shrink:0;" onclick="event.stopPropagation();">'
-                        +'<span style="font-size:0.72rem;color:#94a3b8;">R$</span>'
-                        +'<input type="number" id="ef-addv-val-'+key+'" placeholder="0" min="0" step="100" disabled'
-                            +' style="width:110px;padding:6px 8px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:inherit;font-size:0.8rem;outline:none;background:#f8fafc;color:#94a3b8;"'
-                            +' oninput="efAtualizarTotalAdd()">'
-                    +'</div>'
-                +'</div>';
-            }).join('');
-            efAtualizarTotalAdd();
-        }
-        function efToggleVeiculoAdd(rowEl) {
-            if(!efCPEmEdicao) return;
-            const v = decodeURIComponent(rowEl.dataset.veiculo);
-            const key = v.replace(/[^a-zA-Z0-9]/g,'-');
-            const chk = document.getElementById('ef-addv-chk-'+key);
-            const inp = document.getElementById('ef-addv-val-'+key);
-            if(!chk||!inp) return;
-            chk.checked = !chk.checked;
-            if(chk.checked){
-                inp.disabled=false;
-                inp.style.cssText='width:110px;padding:6px 8px;border:1.5px solid #f4a504;border-radius:6px;font-family:inherit;font-size:0.8rem;outline:none;background:white;color:#1e293b;';
-                rowEl.style.borderColor='#f4a504'; rowEl.style.background='#fffbea';
-                efCPEmEdicao.veiculosPlano[v]=0;
-                setTimeout(function(){inp.focus();},50);
-            } else {
-                inp.disabled=true; inp.value='';
-                inp.style.cssText='width:110px;padding:6px 8px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:inherit;font-size:0.8rem;outline:none;background:#f8fafc;color:#94a3b8;';
-                rowEl.style.borderColor='#e2e8f0'; rowEl.style.background='white';
-                delete efCPEmEdicao.veiculosPlano[v];
-            }
-            efAtualizarTotalAdd();
-        }
-        function efAtualizarTotalAdd() {
-            if(!efCPEmEdicao) return;
-            const wrap = document.getElementById('ef-add-veiculos-lista');
-            if(!wrap) return;
-            let total=0;
-            wrap.querySelectorAll('[data-veiculo]').forEach(function(row){
-                const v = decodeURIComponent(row.dataset.veiculo);
-                const key = v.replace(/[^a-zA-Z0-9]/g,'-');
-                const chk = document.getElementById('ef-addv-chk-'+key);
-                const inp = document.getElementById('ef-addv-val-'+key);
-                if(chk&&chk.checked&&inp){
-                    const val = parseFloat(inp.value||0);
-                    efCPEmEdicao.veiculosPlano[v] = val;
-                    total += val;
-                }
-            });
-            const el=document.getElementById('ef-add-total-verba');
-            if(el) el.innerText='R$ '+total.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
-        }
-        async function efBuscarPopIBGE(cidade,uf){
-            const key=cidade+'|'+uf;
-            if(efPopCache[key]!==undefined) return efPopCache[key];
-            try{
-                const res=await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados/'+uf+'/municipios');
-                const muns=await res.json();
-                const norm=function(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();};
-                const match=muns.find(function(m){return norm(m.nome)===norm(cidade);});
-                if(!match){efPopCache[key]=0;return 0;}
-                const res2=await fetch('https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6['+match.id+']');
-                const data=await res2.json();
-                const pop=parseInt((data&&data[0]&&data[0].resultados&&data[0].resultados[0]&&data[0].resultados[0].series&&data[0].resultados[0].series[0]&&data[0].resultados[0].series[0].serie&&data[0].resultados[0].series[0].serie['2021'])||0);
-                efPopCache[key]=pop; return pop;
-            }catch(e){efPopCache[key]=0;return 0;}
-        }
-
-        async function efConfirmarAddCP() {
-            if(!efCPEmEdicao) return;
-            const veiculos=Object.keys(efCPEmEdicao.veiculosPlano||{});
-            if(!veiculos.length){mostrarNotificacao('Selecione ao menos 1 veículo.','info');return;}
-            const verbaTot=Object.values(efCPEmEdicao.veiculosPlano).reduce(function(s,v){return s+v;},0);
-            if(!verbaTot){mostrarNotificacao('Informe a verba de ao menos 1 veículo.','info');return;}
-            const fator=parseFloat(document.getElementById('ef_fator_digital').value||84)/100;
-            // Usa populacao já carregada do Supabase; chama IBGE só se faltar
-            const cidadesAtivas=efCPEmEdicao.cidades.filter(function(c){return c.ativo!==false;});
-            const semPop=cidadesAtivas.filter(function(c){return !c.populacao;});
-            if(semPop.length){
-                mostrarNotificacao('Buscando população ('+semPop.length+' cidade'+(semPop.length>1?'s':'')+')...','info');
-                for(const c of semPop){
-                    c.populacao=await efBuscarPopIBGE(c.cidade,c.uf);
-                }
-            }
-            efCPEmEdicao.pop_digital=cidadesAtivas.reduce(function(s,c){return s+(c.populacao||0);},0);
-            efCPEmEdicao.pop_digital_ajustado=Math.round(efCPEmEdicao.pop_digital*fator);
-            efCPEmEdicao.verba=verbaTot;
-            efSelecionados.push(efCPEmEdicao);
-            efCPEmEdicao=null;
-            document.getElementById('ef-add-veiculo-wrap').classList.add('hidden');
-            const emptyEl=document.getElementById('ef-add-empty');
-            if(emptyEl) emptyEl.style.display='';
-            efRenderBlocos(); efGerarNome();
-            document.getElementById('ef-blocos-wrap').classList.remove('hidden');
-            document.getElementById('ef-count-badge').innerText=efSelecionados.length;
-            efRenderLista(efCPs);
-            mostrarNotificacao('CP adicionado à simulação.','sucesso');
-        }
-
-        function efCancelarAddCP(){
-            efCPEmEdicao=null;
-            document.getElementById('ef-add-veiculo-wrap').classList.add('hidden');
-            const emptyEl=document.getElementById('ef-add-empty');
-            if(emptyEl) emptyEl.style.display='';
-            // Remove highlight from list
-            document.querySelectorAll('.ef-cp-item').forEach(function(el){el.style.background='';});
-        }
-
-        function efRenderBlocos(){
-            document.getElementById('ef-count-badge').innerText=efSelecionados.length;
-            const cont=document.getElementById('ef-blocos-lista');
-            if(!cont) return;
-            if(!efSelecionados.length){
-                document.getElementById('ef-blocos-wrap').classList.add('hidden');
-                return;
-            }
-            cont.innerHTML=efSelecionados.map(function(cp){
-                const verbaTot=Object.values(cp.veiculosPlano||{}).reduce(function(s,v){return s+v;},0);
-                const cidadesAtivas=cp.cidades.filter(function(c){return c.ativo!==false;});
-                const veiculosHtml=Object.entries(cp.veiculosPlano||{}).map(function(e){
-                    return '<span class="ef-vt">'+e[0]+' <strong>R$'+e[1].toLocaleString('pt-BR',{maximumFractionDigits:0})+'</strong></span>';
-                }).join('');
-                const cod=cp.codigo_cp;
-                return '<div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;">'
-                    +'<div style="width:36px;height:36px;background:#fffbea;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">'
-                        +'<i class="fa-solid fa-location-dot" style="color:#f4a504;"></i>'
-                    +'</div>'
-                    +'<div style="flex:1;min-width:0;">'
-                        +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">'
-                            +'<span class="ef-cod">'+cod+'</span>'
-                            +'<span style="font-weight:700;font-size:0.88rem;color:#1e293b;">'+(cp.nome_cp||cod)+'</span>'
-                            +'<button onclick="efAbrirModalCidades(\''+cod+'\')" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:2px 8px;font-size:0.68rem;color:#64748b;cursor:pointer;">'
-                                +'<i class="fa-solid fa-city" style="font-size:0.62rem;"></i> '+cidadesAtivas.length+' cidades'
-                            +'</button>'
-                        +'</div>'
-                        +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">'
-                            +veiculosHtml
-                            +'<span style="font-size:0.72rem;color:#94a3b8;">Pop. digital: <strong style="color:#475569;">'+(cp.pop_digital_ajustado||0).toLocaleString('pt-BR')+'</strong></span>'
-                            +'<span style="font-size:0.72rem;font-weight:700;color:#1e293b;">Total: R$'+verbaTot.toLocaleString('pt-BR',{maximumFractionDigits:0})+'</span>'
-                        +'</div>'
-                    +'</div>'
-                    +'<button onclick="efRemover(\''+cod+'\')" style="background:none;border:none;cursor:pointer;color:#ef4444;font-size:0.85rem;padding:4px 8px;border-radius:5px;">'
-                        +'<i class="fa-solid fa-trash"></i>'
-                    +'</button>'
-                +'</div>';
-            }).join('');
-        }
-
-        function efRemover(codigoCP){
-            efSelecionados=efSelecionados.filter(function(c){return c.codigo_cp!==codigoCP;});
-            efRenderBlocos(); efGerarNome(); efRenderLista(efCPs);
-        }
-
-        // ── ABAS DO MÓDULO ────────────────────────────────────────────────────────
-        let efAbaAtiva = 'configurar';
-        function efMudarAba(aba){
-            efAbaAtiva = aba;
-            const abas = {configurar:'ef-aba-configurar', salvas:'ef-aba-salvas'};
-            const paineis = {configurar:'ef-painel-configurar', salvas:'ef-painel-salvas'};
-            Object.keys(abas).forEach(function(k){
-                const btn=document.getElementById(abas[k]);
-                const pain=document.getElementById(paineis[k]);
-                const ativo=(k===aba);
-                if(btn){
-                    btn.style.borderBottomColor=ativo?'#f4a504':'transparent';
-                    btn.style.color=ativo?'#1e293b':'#94a3b8';
-                    btn.style.fontWeight=ativo?'700':'600';
-                }
-                if(pain) pain.classList.toggle('hidden',!ativo);
-            });
-            if(aba==='salvas') efCarregarConsulta();
-        }
-
-        // ── NOVA SIMULAÇÃO (reset) ─────────────────────────────────────────────
-        function efNovaSimulacao(){
-            if(efSelecionados.length>0 || efUltimoResultado.length>0){
-                if(!confirm('Iniciar nova simulação? Os dados atuais não salvos serão perdidos.')) return;
-            }
-            efResetarEstado();
-            efMudarAba('configurar');
-            mostrarNotificacao('Nova simulação iniciada.','info');
-        }
-        function efResetarEstado(){
-            efSelecionados=[];
-            efUltimoResultado=[];
-            efCPEmEdicao=null;
-            document.getElementById('ef_ciclo').value='';
-            document.getElementById('ef_fator_digital').value='84';
-            document.getElementById('ef-blocos-wrap').classList.add('hidden');
-            document.getElementById('ef-resultado').classList.add('hidden');
-            document.getElementById('ef-add-veiculo-wrap').classList.add('hidden');
-            document.getElementById('ef-nome-gerado').innerText='';
-            const statusEl=document.getElementById('ef-status-salvo');
-            if(statusEl){statusEl.style.display='none';}
-            efRenderLista(efCPs);
-        }
-
-        // ── EDITAR SIMULAÇÃO SALVA ─────────────────────────────────────────────
-        function efEditarSimulacao(idx){
-            const p=efConsultaDados[idx]; if(!p) return;
-            if(efSelecionados.length>0 || efUltimoResultado.length>0){
-                if(!confirm('Carregar esta simulação para edição? Os dados atuais não salvos serão perdidos.')) return;
-            }
-            efResetarEstado();
-            // Recarregar CPs salvos
-            try{
-                const cpsRaw=typeof p.cps==='string'?JSON.parse(p.cps):p.cps;
-                efSelecionados=cpsRaw||[];
-            }catch(e){ mostrarNotificacao('Erro ao carregar CPs da simulação.','erro'); return; }
-            // Restaurar ciclo
-            const partes=(p.nome_planejamento||'').split('_');
-            const cicloIdx=partes.findIndex(function(x){return /^\d{6}$/.test(x);});
-            if(cicloIdx>=0) document.getElementById('ef_ciclo').value=partes[cicloIdx];
-            if(p.fator_digital) document.getElementById('ef_fator_digital').value=Math.round(p.fator_digital*100);
-            if(efSelecionados.length){
-                efRenderBlocos();
-                document.getElementById('ef-blocos-wrap').classList.remove('hidden');
-            }
-            efMudarAba('configurar');
-            mostrarNotificacao('Simulação carregada para edição.','sucesso');
-        }
-
-        // ── EXCLUIR SIMULAÇÃO ──────────────────────────────────────────────────
-        async function efExcluirSimulacao(id, btnEl){
-            if(!confirm('Excluir esta simulação permanentemente?')) return;
-            if(btnEl){ btnEl.disabled=true; btnEl.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i>'; }
-            try{
-                const res=await fetch(SUPABASE_URL+'/rest/v1/planejamentos_ef?id=eq.'+id,{
-                    method:'DELETE',
-                    headers:sbHeaders()
-                });
-                if(res.ok){
-                    mostrarNotificacao('Simulação excluída.','sucesso');
-                    efCarregarConsulta();
-                } else {
-                    mostrarNotificacao('Erro ao excluir.','erro');
-                    if(btnEl){btnEl.disabled=false;btnEl.innerHTML='<i class="fa-solid fa-trash"></i> Excluir';}
-                }
-            }catch(e){ mostrarNotificacao('Erro de conexão.','erro'); }
-        }
-
-        // EDITAR CIDADES DO CP EM EDIÇÃO (antes de confirmar)
-        function efAbrirModalCidadesEdicao(){
-            if(!efCPEmEdicao) return;
-            efCidadesModalCP = efCPEmEdicao; // aponta para o CP em edição
-            document.getElementById('modal-cidades-titulo').innerText=(efCPEmEdicao.nome_cp||efCPEmEdicao.codigo_cp)+' — Selecionar Cidades';
-            document.getElementById('modal-cidades-busca').value='';
-            document.getElementById('modal-ef-cidades').classList.remove('hidden');
-            efRenderModalCidades(efCPEmEdicao.cidades);
-        }
-
-        // SALVAR SIMULAÇÃO NO SUPABASE
-        async function efSalvarSimulacao(){
-            if(!efUltimoResultado||!efUltimoResultado.length){mostrarNotificacao('Analise a simulação antes de salvar.','info');return;}
-            const nome=efGerarNome();
-            const verbaTot=efUltimoResultado.reduce(function(s,r){return s+(r.verba||0);},0);
-            const viabilidades=efUltimoResultado.map(function(r){return r.viabilidade;});
-            const geral=viabilidades.every(function(v){return v==='viavel';})?'viavel':
-                        viabilidades.some(function(v){return v==='inviavel';})?'inviavel':'atencao';
-            const payload={
-                usuario_email:usuarioSessao.email||'',
-                usuario_nome:usuarioSessao.nome||usuarioSessao.email||'',
-                nome_planejamento:nome,
-                verba_total:verbaTot,
-                fator_digital:parseFloat(document.getElementById('ef_fator_digital').value||84)/100,
-                cps:efSelecionados,
-                resultado:efUltimoResultado.map(function(r){
-                    return{codigo_cp:r.cp.codigo_cp,nome_cp:r.cp.nome_cp,viabilidade:r.viabilidade,verba:r.verba,
-                           popDig:r.popDig,cpcHistorico:r.cpcHistorico,freqEstimada:r.freqEstimada,
-                           estimCadastros:r.estimCadastros,recTexto:r.recTexto,breakdownVeiculos:r.breakdownVeiculos};
-                }),
-                viabilidade_geral:geral
-            };
-            try{
-                const res=await fetch(SUPABASE_URL+'/rest/v1/planejamentos_ef',{
-                    method:'POST',
-                    headers:sbHeadersJSON({'Prefer':'return=minimal'})
-                    ,body:JSON.stringify(payload)
-                });
-                if(res.ok){
-                    mostrarNotificacao('Simulação salva com sucesso!','sucesso');
-                    const statusEl=document.getElementById('ef-status-salvo');
-                    if(statusEl){statusEl.style.display='flex';}
-                    // Recarregar lista de simulações salvas e atualizar badge
-                    await efCarregarConsulta();
-                }
-                else{
-                    const errText=await res.text();
-                    console.error('Erro ao salvar simulação:', res.status, errText);
-                    if(res.status===401||res.status===403){
-                        mostrarNotificacao('Sem permissão para salvar. Faça logout e login novamente.','erro');
-                    } else {
-                        mostrarNotificacao('Erro ao salvar ('+res.status+'). Veja o console.','erro');
-                    }
-                }
-            }catch(e){mostrarNotificacao('Erro de conexão ao salvar.','erro');}
-        }
-
-        // MODAL CIDADES
-        function efAbrirModalCidades(codigoCP){
-            efCidadesModalCP=efSelecionados.find(c=>c.codigo_cp===codigoCP); if(!efCidadesModalCP)return;
-            document.getElementById('modal-cidades-titulo').innerText=`${efCidadesModalCP.nome_cp||efCidadesModalCP.codigo_cp} — Selecionar Cidades`;
-            document.getElementById('modal-cidades-busca').value='';
-            document.getElementById('modal-ef-cidades').classList.remove('hidden');
-            efRenderModalCidades(efCidadesModalCP.cidades);
-        }
-        function efRenderModalCidades(cidades){
-            const ativas=cidades.filter(c=>c.ativo!==false).length;
-            document.getElementById('modal-cidades-count').innerText=`${ativas} de ${cidades.length} selecionadas`;
-            document.getElementById('modal-cidades-lista').innerHTML=cidades.map((c,i)=>`
-                <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #f1f5f9;cursor:pointer;" onclick="efToggleCidade(${i})" onmouseover="this.style.background='#fffbea'" onmouseout="this.style.background=''">
-                    <input type="checkbox" ${c.ativo!==false?'checked':''} style="width:15px;height:15px;accent-color:#f4a504;cursor:pointer;flex-shrink:0;" onclick="event.stopPropagation();efToggleCidade(${i})">
-                    <span style="flex:1;font-size:0.82rem;font-weight:500;color:#1e293b;">${c.cidade}</span>
-                    <span style="font-size:0.7rem;color:#94a3b8;">${c.uf}</span>
-                    <span style="font-size:0.72rem;color:#64748b;font-weight:600;">${c.populacao?c.populacao.toLocaleString('pt-BR')+' hab.':'—'}</span>
-                </div>`).join('');
-        }
-        function efToggleCidade(idx){
-            if(!efCidadesModalCP)return;
-            efCidadesModalCP.cidades[idx].ativo=!(efCidadesModalCP.cidades[idx].ativo!==false);
-            efRenderModalCidades(efCidadesModalCP.cidades);
-        }
-        function efFiltrarCidades(){
-            if(!efCidadesModalCP)return;
-            const q=document.getElementById('modal-cidades-busca').value.toLowerCase();
-            efRenderModalCidades(q?efCidadesModalCP.cidades.filter(c=>c.cidade.toLowerCase().includes(q)):efCidadesModalCP.cidades);
-        }
-        function efSelecionarTodasCidades(ativo){if(!efCidadesModalCP)return;efCidadesModalCP.cidades.forEach(c=>c.ativo=ativo);efRenderModalCidades(efCidadesModalCP.cidades);}
-        async function efConfirmarCidades(){
-            fecharModais(); if(!efCidadesModalCP)return;
-            for(const c of efCidadesModalCP.cidades) if(c.ativo!==false&&!c.populacao) c.populacao=await efBuscarPopIBGE(c.cidade,c.uf);
-            const fator=parseFloat(document.getElementById('ef_fator_digital').value||84)/100;
-            efCidadesModalCP.pop_digital=efCidadesModalCP.cidades.filter(function(c){return c.ativo!==false;}).reduce(function(s,c){return s+(c.populacao||0);},0);
-            efCidadesModalCP.pop_digital_ajustado=Math.round(efCidadesModalCP.pop_digital*fator);
-            // Se ainda em modo edição, atualizar contador de cidades
-            if(efCPEmEdicao && efCidadesModalCP===efCPEmEdicao){
-                const total=efCPEmEdicao.cidades.length;
-                const ativas=efCPEmEdicao.cidades.filter(function(x){return x.ativo!==false;}).length;
-                const el=document.getElementById('ef-add-cidades-count');
-                if(el) el.innerText=ativas+'/'+total+' cidades';
-            } else {
-                efRenderBlocos();
-            }
-        }
-
-        // ANÁLISE
-        function efAnalisar(){
-            if(!efSelecionados.length){mostrarNotificacao('Adicione ao menos 1 CP.','info');return;}
-            const semVerba=efSelecionados.find(function(cp){return !Object.values(cp.veiculosPlano||{}).reduce(function(s,v){return s+v;},0);});
-            if(semVerba){mostrarNotificacao('Informe a verba de pelo menos 1 veículo em cada CP.','info');return;}
-            const fator=parseFloat(document.getElementById('ef_fator_digital').value||84)/100;
-            const medCPC=efMedianaCPC();
-            const resultados=efSelecionados.map(function(cp){return efCalcularViabilidade(cp,fator,medCPC);});
-            const verbaTot=resultados.reduce(function(s,r){return s+r.verba;},0);
-            efUltimoResultado=resultados;
-            efRenderResultado(resultados,verbaTot);
-            document.getElementById('ef-resultado').classList.remove('hidden');
-            setTimeout(function(){document.getElementById('ef-resultado').scrollIntoView({behavior:'smooth',block:'start'});},100);
-        }
-
-        function efCalcularViabilidade(cp, fator, medCPCGlobal){
-            const hist=efHistFiltrado(cp.codigo_cp).filter(function(h){return parseFloat(h.investimento||0)>0&&parseInt(h.cadastros||0)>0;});
-            const temHistorico=hist.length>0;
-            const uf=cp.uf||(cp.cidades&&cp.cidades[0]?cp.cidades[0].uf:null);
-            let cpcHistorico=null,scorePerf=null,scorePerfLabel='',scorePerfCor='',cpcFonte='próprio';
-            if(temHistorico){
-                const inv=hist.reduce(function(s,h){return s+parseFloat(h.investimento||0);},0);
-                const cad=hist.reduce(function(s,h){return s+parseInt(h.cadastros||0);},0);
-                cpcHistorico=inv/cad;
-            } else {
-                cpcHistorico=efCPCadUF(uf);
-                if(cpcHistorico) cpcFonte='UF ('+(uf||'')+')';
-            }
-            const medCPC=temHistorico?medCPCGlobal:(medCPCGlobal||cpcHistorico);
-            if(cpcHistorico&&medCPC){
-                if(cpcHistorico<=medCPC*0.9)     {scorePerf='BOM';   scorePerfLabel='Eficiente';      scorePerfCor='#10b981';}
-                else if(cpcHistorico<=medCPC*1.4){scorePerf='MEDIO'; scorePerfLabel='Na média';       scorePerfCor='#f59e0b';}
-                else                             {scorePerf='RUIM';  scorePerfLabel='Acima da média'; scorePerfCor='#ef4444';}
-            }
-            const popDig=cp.pop_digital_ajustado||0;
-            const verba=cp.verba||0;
-            // BREAKDOWN por veículo — usa cp.veiculosPlano (verbas manuais)
-            const veiculosPlano=cp.veiculosPlano||{};
-            const veiculosArr=Object.keys(veiculosPlano);
-            const breakdownVeiculos=veiculosArr.map(function(v){
-                const verbaV=veiculosPlano[v]||0;
-                const hv=efHistFiltrado(cp.codigo_cp).filter(function(h){return h.veiculo===v&&parseFloat(h.investimento||0)>0;});
-                const invH=hv.reduce(function(s,h){return s+parseFloat(h.investimento||0);},0);
-                const cadH=hv.reduce(function(s,h){return s+parseInt(h.cadastros||0);},0);
-                const impH=hv.reduce(function(s,h){return s+parseFloat(h.impressoes||0);},0);
-                let cpmV=impH>0?(invH/impH)*1000:null;
-                if(!cpmV){
-                    const gAll=Object.keys(efHistorico).reduce(function(arr,k){return arr.concat(efHistFiltrado(k));},[]).filter(function(h){return h.veiculo===v&&parseFloat(h.investimento||0)>0&&parseFloat(h.impressoes||0)>0;});
-                    const gi=gAll.reduce(function(s,h){return s+parseFloat(h.investimento||0);},0);
-                    const gm=gAll.reduce(function(s,h){return s+parseFloat(h.impressoes||0);},0);
-                    cpmV=gm>0?(gi/gm)*1000:null;
-                }
-                const cpcV=cadH>0?invH/cadH:cpcHistorico||null;
-                const pct=verba>0?verbaV/verba:1/Math.max(veiculosArr.length,1);
-                const impressoesV=cpmV&&verbaV?Math.round((verbaV/cpmV)*1000):null;
-                const frequenciaV=impressoesV&&popDig>0?impressoesV/popDig:null;
-                const cadastrosV=cpcV&&verbaV?Math.round(verbaV/cpcV):null;
-                return{veiculo:v,pct:pct,verba:verbaV,cpm:cpmV,cpc:cpcV,impressoes:impressoesV,frequencia:frequenciaV,cadastros:cadastrosV,temDados:invH>0};
-            });
-            // Frequência total = soma impressões / pop digital
-            const impressoesEst=breakdownVeiculos.reduce(function(s,bv){return s+(bv.impressoes||0);},0)||null;
-            const freqEstimada=impressoesEst&&popDig>0?impressoesEst/popDig:null;
-            const cpm=verba&&impressoesEst?Math.round((verba/impressoesEst)*1000*100)/100:efCPM(cp.codigo_cp);
-            // Score saturação com piso e teto
-            let scoreSat=null,scoreSatLabel='',scoreSatCor='';
-            if(freqEstimada!==null){
-                if(freqEstimada<1)       {scoreSat='INVIAVEL_BAIXO'; scoreSatLabel='Verba insuficiente'; scoreSatCor='#ef4444';}
-                else if(freqEstimada<3)  {scoreSat='BAIXO';          scoreSatLabel='Frequência baixa';   scoreSatCor='#f59e0b';}
-                else if(freqEstimada<=6) {scoreSat='BOM';            scoreSatLabel='Frequência ideal';   scoreSatCor='#10b981';}
-                else if(freqEstimada<=10){scoreSat='ALTO';           scoreSatLabel='Saturação moderada'; scoreSatCor='#f59e0b';}
-                else                    {scoreSat='INVIAVEL_ALTO';   scoreSatLabel='Saturação crítica';  scoreSatCor='#ef4444';}
-            } else if(popDig>0&&verba>0){
-                const ratio=verba/popDig;
-                if(ratio<0.3)       {scoreSat='INVIAVEL_BAIXO'; scoreSatLabel='Verba muito baixa (est.)'; scoreSatCor='#ef4444';}
-                else if(ratio<0.8)  {scoreSat='BAIXO';          scoreSatLabel='Freq. baixa (est.)';       scoreSatCor='#f59e0b';}
-                else if(ratio<=1.5) {scoreSat='BOM';            scoreSatLabel='Freq. ok (est.)';          scoreSatCor='#10b981';}
-                else if(ratio<=3)   {scoreSat='ALTO';           scoreSatLabel='Saturação (est.)';         scoreSatCor='#f59e0b';}
-                else                {scoreSat='INVIAVEL_ALTO';  scoreSatLabel='Saturação crítica (est.)'; scoreSatCor='#ef4444';}
-            }
-            const totalCadHist=hist.reduce(function(s,h){return s+parseInt(h.cadastros||0);},0);
-            let scoreDados='',scoreDadosCor='';
-            if(!temHistorico)        {scoreDados='Sem dados reais';    scoreDadosCor='#94a3b8';}
-            else if(totalCadHist<10) {scoreDados='Volume baixo';       scoreDadosCor='#f59e0b';}
-            else if(totalCadHist<50) {scoreDados='Volume razoável';    scoreDadosCor='#f59e0b';}
-            else                     {scoreDados='Volume consistente'; scoreDadosCor='#10b981';}
-            // Diagnóstico
-            const perfRuim=scorePerf==='RUIM';
-            const satInvBaixo=scoreSat==='INVIAVEL_BAIXO', satInvAlto=scoreSat==='INVIAVEL_ALTO';
-            const satBaixo=scoreSat==='BAIXO', satAlto=scoreSat==='ALTO';
-            const satInviavel=satInvBaixo||satInvAlto;
-            let viabilidade,recClasse,recTexto;
-            const freqStr=freqEstimada?freqEstimada.toFixed(1)+'x/hab':'';
-            const cpmStr=cpm?' (CPM médio R$'+cpm.toFixed(0)+')':'';
-            const vMin3x=cpm&&popDig?Math.round(popDig*3/1000*cpm):null;
-            const vMax6x=cpm&&popDig?Math.round(popDig*6/1000*cpm):null;
-            const faixaIdeal=vMin3x&&vMax6x?'R$'+vMin3x.toLocaleString('pt-BR')+' – R$'+vMax6x.toLocaleString('pt-BR'):null;
-            if(!temHistorico&&!cpcHistorico){
-                viabilidade=satInviavel?'inviavel':(satBaixo||satAlto?'atencao':'sem-dados');
-                recClasse=viabilidade==='inviavel'?'ef-rec-vermelha':viabilidade==='atencao'?'ef-rec-amarela':'ef-rec-cinza';
-                if(satInvBaixo)      recTexto='Sem histórico para UF '+(uf||'??')+'. Verba insuficiente. '+(freqStr?'Freq. '+freqStr+cpmStr+'. ':'')+( faixaIdeal?'Faixa ideal: '+faixaIdeal+'.':'');
-                else if(satInvAlto)  recTexto='Sem histórico para UF '+(uf||'??')+'. Saturação crítica. '+(freqStr?'Freq. '+freqStr+cpmStr+'. ':'')+( vMax6x?'Reduzir para R$'+vMax6x.toLocaleString('pt-BR')+'.':'');
-                else if(satBaixo)    recTexto='Sem histórico para UF '+(uf||'??')+'. Verba abaixo do ideal. '+(freqStr?'Freq. '+freqStr+cpmStr+'. ':'')+( faixaIdeal?'Faixa recomendada: '+faixaIdeal+'.':'');
-                else if(satAlto)     recTexto='Sem histórico para UF '+(uf||'??')+'. Saturação moderada. '+(freqStr?'Freq. '+freqStr+cpmStr+'. ':'')+( vMax6x?'Ideal até R$'+vMax6x.toLocaleString('pt-BR')+'.':'');
-                else                 recTexto='Sem histórico para UF '+(uf||'??')+'. '+(freqStr?'Freq. '+freqStr+cpmStr+'. ':'')+'Registre resultados desde o primeiro ciclo.'
-            } else if(satInvBaixo){
-                viabilidade='inviavel'; recClasse='ef-rec-vermelha';
-                recTexto='Verba insuficiente'+(freqStr?' ('+freqStr+')':'')+cpmStr+'. Mínimo recomendado: 3x/hab. '+(faixaIdeal?'Faixa ideal: '+faixaIdeal+'.':'')+(perfRuim?' Histórico de custo elevado agrava o cenário.':'');
-            } else if(satInvAlto){
-                viabilidade='inviavel'; recClasse='ef-rec-vermelha';
-                recTexto='Saturação crítica'+(freqStr?' ('+freqStr+')':'')+cpmStr+'.'+(perfRuim?' CPCad R$'+(cpcHistorico?cpcHistorico.toFixed(0):'?')+' acima da mediana.':'')+' '+(vMax6x?'Reduzir para até R$'+vMax6x.toLocaleString('pt-BR')+'.':'');
-            } else if(perfRuim&&satAlto){
-                viabilidade='inviavel'; recClasse='ef-rec-vermelha';
-                recTexto='CPCad R$'+(cpcHistorico?cpcHistorico.toFixed(0):'?')+' ('+(medCPC?((cpcHistorico/medCPC-1)*100).toFixed(0):'?')+'% acima da mediana) + saturação moderada'+(freqStr?' ('+freqStr+')':'')+cpmStr+'. '+(vMax6x?'Reduzir verba para R$'+vMax6x.toLocaleString('pt-BR')+'.':'Revisar mix.');
-            } else if(perfRuim||satBaixo||satAlto){
-                viabilidade='atencao'; recClasse='ef-rec-amarela';
-                const partes=[];
-                if(satBaixo) partes.push('Verba abaixo do ideal'+(freqStr?' ('+freqStr+')':'')+cpmStr+'. '+(faixaIdeal?'Faixa recomendada: '+faixaIdeal+'.':''));
-                if(satAlto)  partes.push('Saturação moderada'+(freqStr?' ('+freqStr+')':'')+cpmStr+'. '+(vMax6x?'Ideal até R$'+vMax6x.toLocaleString('pt-BR')+'.':''));
-                if(perfRuim) partes.push('CPCad R$'+(cpcHistorico?cpcHistorico.toFixed(0):'?')+' — '+(medCPC?((cpcHistorico/medCPC-1)*100).toFixed(0):'?')+'% acima da mediana. Revisar mix.');
-                recTexto=partes.join(' ');
-            } else {
-                viabilidade='viavel'; recClasse='ef-rec-verde';
-                recTexto='Viável. CPCad R$'+(cpcHistorico?cpcHistorico.toFixed(0):'?')+' ('+(medCPC&&cpcHistorico?((1-cpcHistorico/medCPC)*100).toFixed(0)+'% abaixo':'abaixo')+' da mediana R$'+(medCPC?medCPC.toFixed(0):'?')+')'+(freqStr?'. Freq. '+freqStr+cpmStr+' — ideal.':'')+'. '+(totalCadHist>0&&cpcHistorico?'Est. '+Math.round(verba/cpcHistorico)+' cadastros.':'');
-            }
-            const estimCadastros=breakdownVeiculos.reduce(function(s,bv){return s+(bv.cadastros||0);},0)||null;
-            const cidadesAtivas=cp.cidades.filter(function(c){return c.ativo!==false;});
-            return{cp:cp,viabilidade:viabilidade,cpcHistorico:cpcHistorico,cpcFonte:cpcFonte,medCPC:medCPC,scorePerf:scorePerf,scorePerfLabel:scorePerfLabel,scorePerfCor:scorePerfCor,scoreSat:scoreSat,scoreSatLabel:scoreSatLabel,scoreSatCor:scoreSatCor,scoreDados:scoreDados,scoreDadosCor:scoreDadosCor,popDig:popDig,freqEstimada:freqEstimada,impressoesEst:impressoesEst,cpm:cpm,verba:verba,temHistorico:temHistorico,recClasse:recClasse,recTexto:recTexto,estimCadastros:estimCadastros,totalCadHist:totalCadHist,cidadesAtivas:cidadesAtivas,breakdownVeiculos:breakdownVeiculos};
-        }
-        function efRenderResultado(resultados,verbaTot){
-            const nome=efGerarNome();
-            document.getElementById('ef-resultado-nome').innerText=nome?'· '+nome:'';
-            const viavel=resultados.filter(function(r){return r.viabilidade==='viavel';}).length;
-            const atencao=resultados.filter(function(r){return r.viabilidade==='atencao';}).length;
-            const inviavel=resultados.filter(function(r){return r.viabilidade==='inviavel';}).length;
-            const semDados=resultados.filter(function(r){return r.viabilidade==='sem-dados';}).length;
-            const totalEstim=resultados.reduce(function(s,r){return s+(r.estimCadastros||0);},0);
-            const totalImpr=resultados.reduce(function(s,r){return s+(r.impressoesEst||0);},0);
-            document.getElementById('ef-sumario').innerHTML=
-                '<div class="ef-scard"><div class="ef-scard-val">'+resultados.length+'</div><div class="ef-scard-lbl">CPs analisados</div></div>'+
-                '<div class="ef-scard"><div class="ef-scard-val" style="color:#10b981;">'+viavel+'</div><div class="ef-scard-lbl">Viáveis</div></div>'+
-                '<div class="ef-scard"><div class="ef-scard-val" style="color:#f59e0b;">'+(atencao+semDados)+'</div><div class="ef-scard-lbl">Atenção</div></div>'+
-                '<div class="ef-scard"><div class="ef-scard-val" style="color:#ef4444;">'+inviavel+'</div><div class="ef-scard-lbl">Inviáveis</div></div>'+
-                '<div class="ef-scard"><div class="ef-scard-val">'+(totalEstim>0?totalEstim.toLocaleString('pt-BR'):'—')+'</div><div class="ef-scard-lbl">Cadastros est.</div></div>'+
-                '<div class="ef-scard"><div class="ef-scard-val">'+(totalImpr>0?(totalImpr>=1000000?(totalImpr/1000000).toFixed(1)+'M':(totalImpr/1000).toFixed(0)+'K'):'—')+'</div><div class="ef-scard-lbl">Impressões est.</div></div>';
-            const ordem={inviavel:0,atencao:1,'sem-dados':2,viavel:3};
-            resultados.sort(function(a,b){return ordem[a.viabilidade]-ordem[b.viabilidade];});
-            const periodoLabel=efPeriodCiclos===0?'todos os ciclos':'últ. '+efPeriodCiclos+' ciclos';
-            document.getElementById('ef-cards').innerHTML=resultados.map(function(r){
-                const cp=r.cp,viabilidade=r.viabilidade,cpcHistorico=r.cpcHistorico,cpcFonte=r.cpcFonte,medCPC=r.medCPC;
-                const scorePerf=r.scorePerf,scorePerfLabel=r.scorePerfLabel,scorePerfCor=r.scorePerfCor;
-                const scoreSat=r.scoreSat,scoreSatLabel=r.scoreSatLabel,scoreSatCor=r.scoreSatCor;
-                const scoreDados=r.scoreDados,scoreDadosCor=r.scoreDadosCor,popDig=r.popDig;
-                const freqEstimada=r.freqEstimada,impressoesEst=r.impressoesEst,cpm=r.cpm,verba=r.verba;
-                const recClasse=r.recClasse,recTexto=r.recTexto,estimCadastros=r.estimCadastros;
-                const totalCadHist=r.totalCadHist,cidadesAtivas=r.cidadesAtivas,temHistorico=r.temHistorico;
-                const breakdownVeiculos=r.breakdownVeiculos;
-                const semMap={viavel:{icon:'fa-circle-check',cor:'#10b981',label:'VIÁVEL'},atencao:{icon:'fa-triangle-exclamation',cor:'#f59e0b',label:'ATENÇÃO'},inviavel:{icon:'fa-circle-xmark',cor:'#ef4444',label:'INVIÁVEL'},'sem-dados':{icon:'fa-circle-question',cor:'#94a3b8',label:'SEM DADOS'}};
-                const sem=semMap[viabilidade];
-                const cidades=cidadesAtivas.slice(0,4).map(function(c){return c.cidade;}).join(', ')+(cidadesAtivas.length>4?' +'+(cidadesAtivas.length-4):'');
-                const bvHtml=breakdownVeiculos.map(function(bv){
-                    const freqCor=!bv.frequencia?'#94a3b8':bv.frequencia<=3?'#10b981':bv.frequencia<=6?'#f59e0b':'#ef4444';
-                    return '<div class="ef-veiculo-row">'+
-                        '<div class="ef-veiculo-row-head">'+
-                            '<span style="font-weight:700;color:#1e293b;">'+bv.veiculo+'</span>'+
-                            '<span style="font-size:0.68rem;color:#94a3b8;">'+(bv.pct*100).toFixed(0)+'% do orçamento'+(bv.temDados?'':' <span style="color:#f59e0b;">(ref. global)</span>')+'</span>'+
-                        '</div>'+
-                        '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;">'+
-                            '<div class="ef-veiculo-metric"><strong>R$'+(bv.verba||0).toLocaleString('pt-BR')+'</strong><span>Verba</span></div>'+
-                            (bv.cpm?'<div class="ef-veiculo-metric"><strong>R$'+bv.cpm.toFixed(1)+'</strong><span>CPM</span></div>':'')+
-                            (bv.impressoes?'<div class="ef-veiculo-metric"><strong>'+bv.impressoes.toLocaleString('pt-BR')+'</strong><span>Impressões</span></div>':'')+
-                            (bv.frequencia?'<div class="ef-veiculo-metric"><strong style="color:'+freqCor+';">'+bv.frequencia.toFixed(1)+'x</strong><span>Freq./hab</span></div>':'')+
-                            (bv.cpc?'<div class="ef-veiculo-metric"><strong>R$'+bv.cpc.toFixed(0)+'</strong><span>CPCad</span></div>':'')+
-                            (bv.cadastros?'<div class="ef-veiculo-metric"><strong style="color:#10b981;">'+bv.cadastros.toLocaleString('pt-BR')+'</strong><span>Cadastros est.</span></div>':'')+
-                        '</div>'+
-                    '</div>';
-                }).join('');
-                return '<div class="ef-card ef-'+(viabilidade==='sem-dados'?'sem-dados':viabilidade)+'">'+
-                    '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;">'+
-                        '<div>'+
-                            '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">'+
-                                '<span class="ef-cod">'+cp.codigo_cp+'</span>'+
-                                '<span style="font-weight:700;font-size:0.92rem;color:#1e293b;">'+(cp.nome_cp||cp.codigo_cp)+'</span>'+
-                                (!temHistorico&&cpcHistorico?'<span style="background:#fef3c7;border:1px solid #fde68a;color:#92400e;border-radius:5px;padding:1px 7px;font-size:0.65rem;font-weight:700;">ref. UF '+(cp.uf||'')+'</span>':'')+
-                            '</div>'+
-                            '<div style="font-size:0.72rem;color:#94a3b8;"><i class="fa-solid fa-city" style="font-size:0.6rem;"></i> '+cidades+' · '+cidadesAtivas.length+' cidades · <i class="fa-solid fa-clock-rotate-left" style="font-size:0.6rem;"></i> '+periodoLabel+'</div>'+
-                        '</div>'+
-                        '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;margin-left:10px;">'+
-                            '<div style="display:flex;align-items:center;gap:5px;background:'+sem.cor+'18;border:1px solid '+sem.cor+'40;border-radius:8px;padding:5px 10px;">'+
-                                '<i class="fa-solid '+sem.icon+'" style="color:'+sem.cor+';font-size:0.85rem;"></i>'+
-                                '<span style="font-weight:800;font-size:0.72rem;color:'+sem.cor+';">'+sem.label+'</span>'+
-                            '</div>'+
-                            '<div style="font-size:0.72rem;color:#94a3b8;">Total: <strong style="color:#1e293b;">R$'+verba.toLocaleString('pt-BR')+'</strong></div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div style="background:#f8fafc;border-radius:10px;padding:12px 14px;margin-bottom:10px;">'+
-                        '<div class="ef-pilar">'+
-                            '<div class="ef-pilar-ic" style="background:'+(scorePerfCor||'#f1f5f9')+'18;"><i class="fa-solid fa-chart-line" style="color:'+(scorePerfCor||'#94a3b8')+';" ></i></div>'+
-                            '<span class="ef-pilar-label">CPCadastro '+(cpcFonte!=='próprio'?'<span style="font-size:0.65rem;color:#94a3b8;">('+cpcFonte+')</span>':'')+' </span>'+
-                            '<span class="ef-pilar-val">'+(cpcHistorico?'R$'+cpcHistorico.toFixed(0):'—')+'</span>'+
-                            '<div class="ef-dot" style="background:'+(scorePerfCor||'#94a3b8')+';"></div>'+
-                            '<span style="font-size:0.72rem;color:'+(scorePerfCor||'#94a3b8')+';font-weight:600;min-width:90px;text-align:right;">'+(scorePerfLabel||'Sem dados')+'</span>'+
-                        '</div>'+
-                        '<div class="ef-pilar">'+
-                            '<div class="ef-pilar-ic" style="background:'+(scoreSatCor||'#f1f5f9')+'18;"><i class="fa-solid fa-signal" style="color:'+(scoreSatCor||'#94a3b8')+';" ></i></div>'+
-                            '<span class="ef-pilar-label">Freq. estimada'+(cpm?' <span style="font-size:0.65rem;color:#94a3b8;">(CPM R$'+cpm.toFixed(1)+')</span>':'')+' </span>'+
-                            '<span class="ef-pilar-val">'+(freqEstimada?freqEstimada.toFixed(1)+'x/hab':'—')+'</span>'+
-                            '<div class="ef-dot" style="background:'+(scoreSatCor||'#94a3b8')+';"></div>'+
-                            '<span style="font-size:0.72rem;color:'+(scoreSatCor||'#94a3b8')+';font-weight:600;min-width:90px;text-align:right;">'+(scoreSatLabel||'Sem dados')+'</span>'+
-                        '</div>'+
-                        '<div class="ef-pilar">'+
-                            '<div class="ef-pilar-ic" style="background:'+scoreDadosCor+'18;"><i class="fa-solid fa-database" style="color:'+scoreDadosCor+';" ></i></div>'+
-                            '<span class="ef-pilar-label">Volume histórico</span>'+
-                            '<span class="ef-pilar-val">'+(totalCadHist>0?totalCadHist+' cadastros':'—')+'</span>'+
-                            '<div class="ef-dot" style="background:'+scoreDadosCor+';"></div>'+
-                            '<span style="font-size:0.72rem;color:'+scoreDadosCor+';font-weight:600;min-width:90px;text-align:right;">'+scoreDados+'</span>'+
-                        '</div>'+
-                        '<div style="margin-top:8px;padding-top:8px;border-top:1px solid #e2e8f0;font-size:0.7rem;color:#94a3b8;display:flex;gap:12px;flex-wrap:wrap;">'+
-                            (medCPC?'<span>Mediana: <strong style="color:#475569;">R$'+medCPC.toFixed(0)+'</strong></span>':'')+
-                            (popDig>0?'<span>Pop. digital: <strong style="color:#475569;">'+popDig.toLocaleString('pt-BR')+'</strong></span>':'')+
-                            (impressoesEst?'<span>Impr. totais: <strong style="color:#475569;">'+impressoesEst.toLocaleString('pt-BR')+'</strong></span>':'')+
-                            (estimCadastros?'<span>Cadastros est.: <strong style="color:#10b981;font-size:0.8rem;">'+estimCadastros.toLocaleString('pt-BR')+'</strong></span>':'')+
-                        '</div>'+
-                    '</div>'+
-                    (bvHtml?'<div style="margin-bottom:10px;"><div style="font-size:0.7rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-tv" style="color:#f4a504;"></i> Por veículo</div>'+bvHtml+'</div>':'')+
-                    '<div class="'+recClasse+' ef-rec"><i class="fa-solid fa-lightbulb" style="font-size:0.85rem;flex-shrink:0;margin-top:1px;"></i><span>'+recTexto+'</span></div>'+
-                '</div>';
-            }).join('');
-            window._efUltimosResultados=resultados;
-            window._efUltimoNome=efGerarNome();
-        }
-
-        // EXPORTAR XLSX
-        function efExportar(){
-            const resultados=window._efUltimosResultados;
-            if(!resultados||!resultados.length){mostrarNotificacao('Gere a análise primeiro.','info');return;}
-            const nome=window._efUltimoNome||'Planejamento EF';
-            const ciclo=(document.getElementById('ef_ciclo').value||'').trim();
-            const periodoLabel=efPeriodCiclos===0?'Todos os ciclos':'Últimos '+efPeriodCiclos+' ciclos';
-            const veiculosSel=[...efVeiculosAtivos].join(', ');
-            const wb=XLSX.utils.book_new();
-            const corVia={viavel:'VIÁVEL',atencao:'ATENÇÃO',inviavel:'INVIÁVEL','sem-dados':'SEM DADOS'};
-            const sumRows=[
-                ['Simulação IR — Extra Franqueados'],[''],
-                ['Nome',nome],['Ciclo',ciclo||'—'],['Período',periodoLabel],
-                ['Veículos',veiculosSel],['Gerado em',new Date().toLocaleString('pt-BR')],[''],
-                ['CP','Nome CP','UF','Verba (R$)','Pop. Digital','Freq. Est.','CPM médio','Impressões Est.','CPCadastro','Fonte CPCad','Cadastros Est.','Volume Hist.','Viabilidade'],
-                ...resultados.map(function(r){return[
-                    r.cp.codigo_cp,r.cp.nome_cp||'',r.cp.uf||'',r.verba,r.popDig,
-                    r.freqEstimada?parseFloat(r.freqEstimada.toFixed(2)):null,
-                    r.cpm?parseFloat(r.cpm.toFixed(2)):null,r.impressoesEst||null,
-                    r.cpcHistorico?parseFloat(r.cpcHistorico.toFixed(2)):null,r.cpcFonte||'próprio',
-                    r.estimCadastros||null,r.totalCadHist||0,corVia[r.viabilidade]||r.viabilidade
-                ];}),
-                [''],['TOTAIS','','',
-                    resultados.reduce(function(s,r){return s+r.verba;},0),'','','',
-                    resultados.reduce(function(s,r){return s+(r.impressoesEst||0);},0),'','',
-                    resultados.reduce(function(s,r){return s+(r.estimCadastros||0);},0),'',''
-                ]
-            ];
-            const ws1=XLSX.utils.aoa_to_sheet(sumRows);
-            ws1['!cols']=[{wch:14},{wch:28},{wch:5},{wch:12},{wch:13},{wch:12},{wch:12},{wch:14},{wch:13},{wch:12},{wch:13},{wch:13},{wch:12}];
-            XLSX.utils.book_append_sheet(wb,ws1,'Sumário');
-            const bvRows=[
-                ['Por Veículo'],[''],
-                ['CP','Nome CP','Veículo','% Orçamento','Verba (R$)','CPM (R$)','Impressões Est.','Freq./hab','CPCadastro (R$)','Cadastros Est.','Tem histórico?'],
-                ...resultados.reduce(function(arr,r){return arr.concat((r.breakdownVeiculos||[]).map(function(bv){return[
-                    r.cp.codigo_cp,r.cp.nome_cp||'',bv.veiculo,
-                    parseFloat((bv.pct*100).toFixed(1)),bv.verba||0,
-                    bv.cpm?parseFloat(bv.cpm.toFixed(2)):null,bv.impressoes||null,
-                    bv.frequencia?parseFloat(bv.frequencia.toFixed(2)):null,
-                    bv.cpc?parseFloat(bv.cpc.toFixed(2)):null,bv.cadastros||null,bv.temDados?'Sim':'Não'
-                ];}));},[])
-            ];
-            const ws2=XLSX.utils.aoa_to_sheet(bvRows);
-            ws2['!cols']=[{wch:14},{wch:26},{wch:18},{wch:12},{wch:12},{wch:10},{wch:14},{wch:10},{wch:13},{wch:13},{wch:12}];
-            XLSX.utils.book_append_sheet(wb,ws2,'Por Veículo');
-            const cidRows=[
-                ['Cidades por CP'],[''],
-                ['CP','Nome CP','Cidade','UF','População','Ativa?'],
-                ...resultados.reduce(function(arr,r){return arr.concat(r.cp.cidades.map(function(c){return[r.cp.codigo_cp,r.cp.nome_cp||'',c.cidade,c.uf,c.populacao||null,c.ativo!==false?'Sim':'Não'];}));},[])
-            ];
-            const ws3=XLSX.utils.aoa_to_sheet(cidRows);
-            ws3['!cols']=[{wch:14},{wch:26},{wch:26},{wch:5},{wch:12},{wch:8}];
-            XLSX.utils.book_append_sheet(wb,ws3,'Cidades');
-            const nomeArq='EF_'+(ciclo||'plano')+'_'+new Date().toLocaleDateString('pt-BR').replace(/\//g,'-')+'.xlsx';
-            XLSX.writeFile(wb,nomeArq);
-            mostrarNotificacao('Exportado: '+nomeArq,'success');
-        }
-
-        // HISTÓRICO (modal)
-        async function abrirHistoricoEF(){
-            document.getElementById('modal-historico-ef').classList.remove('hidden');
-            const body=document.getElementById('ef-historico-body');
-            body.innerHTML='<div style="text-align:center;color:#94a3b8;padding:30px;"><i class="fa-solid fa-spinner fa-spin"></i></div>';
-            try{
-                const res=await fetch(`${SUPABASE_URL}/rest/v1/planejamentos_ef?select=*&order=created_at.desc&limit=30`,{headers:sbHeaders()});
-                const dados=await res.json();
-                if(!dados.length){body.innerHTML='<div style="text-align:center;color:#94a3b8;padding:40px;">Nenhum simulação salva.</div>';return;}
-                const cores={viavel:'#10b981',atencao:'#f59e0b',inviavel:'#ef4444'};
-                body.innerHTML=dados.map(p=>{
-                    const data=new Date(p.created_at).toLocaleString('pt-BR');
-                    const cps=JSON.parse(p.cps||'[]'); const cor=cores[p.viabilidade_geral]||'#94a3b8';
-                    return `<div class="ef-hist-item"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:${cor};"></div><span style="font-weight:700;font-size:0.88rem;color:#1e293b;">${p.nome_planejamento}</span></div><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:0.7rem;font-weight:700;color:white;background:${cor};border-radius:5px;padding:2px 8px;">${(p.viabilidade_geral||'').toUpperCase()}</span><span style="font-size:0.7rem;color:#94a3b8;">${data}</span></div></div><div style="font-size:0.73rem;color:#64748b;">R$${parseFloat(p.verba_total||0).toLocaleString('pt-BR')} · ${cps.length} CP(s) · ${p.usuario_nome}</div></div>`;
-                }).join('');
-            }catch(e){body.innerHTML='<div style="text-align:center;color:#ef4444;padding:30px;"><i class="fa-solid fa-circle-exclamation"></i> Erro.</div>';}
-        }
-
-        // CONSULTA
-        async function efCarregarConsulta(){
-            const lista=document.getElementById('consulta-ef-lista');
-            lista.innerHTML='<div style="text-align:center;color:#94a3b8;padding:50px;"><i class="fa-solid fa-spinner fa-spin"></i> Carregando...</div>';
-            try{const res=await fetch(`${SUPABASE_URL}/rest/v1/planejamentos_ef?select=*&order=created_at.desc`,{headers:sbHeaders()});efConsultaDados=await res.json();
-                efRenderConsulta(efConsultaDados);
-                const badge=document.getElementById('ef-aba-count');
-                if(badge){badge.innerText=efConsultaDados.length||'';badge.style.display=efConsultaDados.length?'':'none';}}
-            catch(e){lista.innerHTML='<div style="text-align:center;color:#ef4444;padding:50px;"><i class="fa-solid fa-circle-exclamation"></i> Erro.</div>';}
-        }
-        function efFiltroVia(via,el){document.querySelectorAll('#consulta-ef-filtros-via .ef-tag').forEach(t=>t.classList.remove('ef-ativo'));el.classList.add('ef-ativo');efConsultaFiltroVia=via;efFiltrarConsulta();}
-        function efFiltrarConsulta(){
-            const buscaEl=document.getElementById('ef-salvas-busca')||document.getElementById('consulta-ef-busca');
-            const ordEl=document.getElementById('ef-salvas-order')||document.getElementById('consulta-ef-order');
-            const q=(buscaEl?buscaEl.value:'').toLowerCase();
-            const ord=ordEl?ordEl.value:'desc';
-            let dados=[...efConsultaDados];
-            if(efConsultaFiltroVia) dados=dados.filter(p=>p.viabilidade_geral===efConsultaFiltroVia);
-            if(q) dados=dados.filter(p=>(p.nome_planejamento||'').toLowerCase().includes(q)||(p.cps||'').toLowerCase().includes(q));
-            if(ord==='asc') dados.sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
-            efRenderConsulta(dados);
-        }
-        function efRenderConsulta(dados){
-            // suporta tanto o painel interno (ef-salvas-lista) quanto a tela separada legada
-            const lista=document.getElementById('ef-salvas-lista')||document.getElementById('consulta-ef-lista');
-            if(!lista) return;
-            if(!dados.length){lista.innerHTML='<div style="text-align:center;color:#94a3b8;padding:50px;"><i class="fa-solid fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;"></i>Nenhuma simulação salva.</div>';return;}
-            const cores={viavel:{cor:'#10b981',bg:'#f0fdf4',borda:'#bbf7d0',label:'VIÁVEL'},atencao:{cor:'#f59e0b',bg:'#fffbea',borda:'#fde68a',label:'ATENÇÃO'},inviavel:{cor:'#ef4444',bg:'#fef2f2',borda:'#fecaca',label:'INVIÁVEL'}};
-            lista.innerHTML=dados.map((p,idx)=>{
-                const data=new Date(p.created_at).toLocaleString('pt-BR');
-                const cps=JSON.parse(p.cps||'[]');const resultado=JSON.parse(p.resultado||'[]');
-                const c=cores[p.viabilidade_geral]||{cor:'#94a3b8',bg:'#f8fafc',borda:'#e2e8f0',label:'SEM DADOS'};
-                const viav=resultado.filter(r=>r.viabilidade==='viavel').length;
-                const atenc=resultado.filter(r=>r.viabilidade==='atencao').length;
-                const invi=resultado.filter(r=>r.viabilidade==='inviavel').length;
-                const sdados=resultado.filter(r=>r.viabilidade==='sem-dados').length;
-                const totalEst=resultado.reduce((s,r)=>s+(r.est_cadastros||0),0);
-                return `<div style="background:white;border-radius:14px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04);overflow:hidden;">
-                    <div style="padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:14px;" onclick="efToggleConsultaCard('efcc_${idx}')">
-                        <div style="width:10px;height:10px;border-radius:50%;background:${c.cor};flex-shrink:0;"></div>
-                        <div style="flex:1;min-width:0;">
-                            <div style="font-weight:700;font-size:0.92rem;color:#1e293b;margin-bottom:3px;">${p.nome_planejamento}</div>
-                            <div style="font-size:0.72rem;color:#94a3b8;display:flex;gap:12px;flex-wrap:wrap;">
-                                <span><i class="fa-solid fa-calendar" style="font-size:0.6rem;"></i> ${data}</span>
-                                <span><i class="fa-solid fa-user" style="font-size:0.6rem;"></i> ${p.usuario_nome}</span>
-                                <span><i class="fa-solid fa-wallet" style="font-size:0.6rem;"></i> R$${parseFloat(p.verba_total||0).toLocaleString('pt-BR')}</span>
-                                <span><i class="fa-solid fa-location-dot" style="font-size:0.6rem;"></i> ${cps.length} CP(s)</span>
-                            </div>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-                            <div style="display:flex;gap:4px;">
-                                ${viav>0?`<span style="background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;border-radius:6px;padding:2px 8px;font-size:0.7rem;font-weight:700;">🟢 ${viav}</span>`:''}
-                                ${atenc>0?`<span style="background:#fffbea;border:1px solid #fde68a;color:#a16207;border-radius:6px;padding:2px 8px;font-size:0.7rem;font-weight:700;">🟡 ${atenc}</span>`:''}
-                                ${invi>0?`<span style="background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:6px;padding:2px 8px;font-size:0.7rem;font-weight:700;">🔴 ${invi}</span>`:''}
-                                ${sdados>0?`<span style="background:#f8fafc;border:1px solid #e2e8f0;color:#94a3b8;border-radius:6px;padding:2px 8px;font-size:0.7rem;font-weight:700;">⚪ ${sdados}</span>`:''}
-                            </div>
-                            <span style="background:${c.bg};border:1px solid ${c.borda};color:${c.cor};border-radius:7px;padding:4px 10px;font-size:0.7rem;font-weight:800;">${c.label}</span>
-                            <i class="fa-solid fa-chevron-down" style="color:#94a3b8;font-size:0.75rem;transition:0.3s;" id="efcc_chevron_${idx}"></i>
-                        </div>
-                    </div>
-                    <div id="efcc_${idx}" style="display:none;border-top:1px solid #f1f5f9;padding:18px 22px;background:#fafafa;">
-                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:14px;">
-                            ${resultado.map(r=>{
-                                const rc={viavel:{cor:'#10b981',label:'Viável',bg:'#f0fdf4'},atencao:{cor:'#f59e0b',label:'Atenção',bg:'#fffbea'},inviavel:{cor:'#ef4444',label:'Inviável',bg:'#fef2f2'},'sem-dados':{cor:'#94a3b8',label:'Sem dados',bg:'#f8fafc'}}[r.viabilidade]||{cor:'#94a3b8',label:'—',bg:'#f8fafc'};
-                                return `<div style="background:white;border:1px solid #e2e8f0;border-left:4px solid ${rc.cor};border-radius:9px;padding:11px 13px;">
-                                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
-                                        <div style="font-weight:700;font-size:0.8rem;color:#1e293b;">${r.nome_cp||r.codigo_cp}</div>
-                                        <span style="background:${rc.bg};color:${rc.cor};border-radius:5px;padding:2px 7px;font-size:0.68rem;font-weight:700;">${rc.label}</span>
-                                    </div>
-                                    <div style="display:flex;gap:10px;font-size:0.7rem;color:#64748b;flex-wrap:wrap;">
-                                        <span>Verba: <strong>R$${(r.verba||0).toLocaleString('pt-BR')}</strong></span>
-                                        ${r.cpc?`<span>CPCad: <strong>R$${parseFloat(r.cpc).toFixed(0)}</strong>${r.cpc_fonte&&r.cpc_fonte!=='próprio'?` <span style="color:#94a3b8;font-size:0.65rem;">(${r.cpc_fonte})</span>`:''}</span>`:''}
-                                        ${r.freq_estimada?`<span>Freq.: <strong>${parseFloat(r.freq_estimada).toFixed(1)}x/hab</strong></span>`:''}
-                                        ${r.est_cadastros?`<span>Est.: <strong>${r.est_cadastros}</strong></span>`:''}
-                                    </div>
-                                </div>`;
-                            }).join('')}
-                        </div>
-                        ${totalEst>0?`<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#14532d;display:flex;gap:8px;align-items:center;margin-bottom:12px;"><i class="fa-solid fa-bullseye"></i> Estimativa total: <strong>${totalEst.toLocaleString('pt-BR')} cadastros</strong></div>`:''}
-                        <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:8px;border-top:1px solid #f1f5f9;">
-                            <button onclick="efEditarSimulacao(${idx})" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:7px;padding:7px 14px;font-size:0.75rem;font-weight:600;color:#475569;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:5px;transition:0.2s;" onmouseover="this.style.borderColor='#f4a504';this.style.color='#1e293b'" onmouseout="this.style.borderColor='#e2e8f0';this.style.color='#475569'">
-                                <i class="fa-solid fa-pen-to-square" style="font-size:0.7rem;"></i> Editar
-                            </button>
-                            <button onclick="efExcluirSimulacao('${p.id}',this)" style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:7px;padding:7px 14px;font-size:0.75rem;font-weight:600;color:#ef4444;cursor:pointer;font-family:'Google Sans','Outfit',sans-serif;display:flex;align-items:center;gap:5px;transition:0.2s;" onmouseover="this.style.background='#fee2e2'" onmouseout="this.style.background='#fef2f2'">
-                                <i class="fa-solid fa-trash" style="font-size:0.7rem;"></i> Excluir
-                            </button>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-        function efToggleConsultaCard(id){
-            const el=document.getElementById(id);const idx=id.replace('efcc_','');const chevron=document.getElementById(`efcc_chevron_${idx}`);
-            if(!el)return;const aberto=el.style.display!=='none';el.style.display=aberto?'none':'block';if(chevron)chevron.style.transform=aberto?'':'rotate(180deg)';
-        }
-        // ============================================================
-        // FIM MÓDULO EF
-        // ============================================================
-
-        function copiarLink() { 
-            if (!linkAtual) { mostrarNotificacao("Selecione um arquivo primeiro!", "info"); return; } 
+        
+        function copiarLink() {
+            if (!linkAtual) { mostrarNotificacao("Selecione um arquivo primeiro!", "info"); return; }
             const tempInput = document.createElement("input"); tempInput.value = linkAtual; document.body.appendChild(tempInput); tempInput.select(); tempInput.setSelectionRange(0, 99999);
-            try { document.execCommand("copy"); mostrarNotificacao("Link copiado para a área de transferência.", "success"); } catch (err) { mostrarNotificacao("Erro ao copiar link.", "error"); }
+            try { document.execCommand("copy"); mostrarNotificacao("Link copiado!", "success"); } catch (err) { mostrarNotificacao("Erro ao copiar link.", "error"); }
             document.body.removeChild(tempInput);
         }
     </script>
